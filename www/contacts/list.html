@@ -1,0 +1,49 @@
+<ion-view view-title="Contact List">
+
+   <ion-nav-buttons side="primary">
+      <button class="button button-icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete"></button>
+   </ion-nav-buttons>
+   <ion-nav-buttons side="secondary">
+      <button class="button button-icon ion-navicon" ng-click="data.showReorder = !data.showReorder"></button>
+   </ion-nav-buttons>
+
+
+      <div class="bar bar-subheader item-input-inset bar-light">
+        <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" ng-model="query" placeholder="Search">
+        </label>
+      </div>
+
+      <ion-content class="has-subheader has-tabs">
+
+         <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+
+         <ion-item class="item-divider">Pending Contacts</ion-item>
+            <ion-item class=>Connection Request 1</ion-item>
+            <ion-item>Connection Request 2</ion-item>
+
+         <ion-item class="item-divider">Your Contacts</ion-item>
+            <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+               <ion-item ng-class="{ 'star' : contact.star }" ng-repeat="contact in contacts | filter: query" class="item-thumbnail-left item-icon-right item-text-wrap" href="#/tab/list/{{contact.id}}">
+                  <img ng-src="{{ contact.thumbnail_url }}" alt="photo">
+                  <h2>{{ contact.name }}</h2>
+                  <h3>{{ contact.title }}</h3>
+                  <p>{{ contact.slogan | limitTo: 50 }}{{ contact.slogan.length>50 ? "&hellip;" : ""}}</p>
+                  <button class="button button-clear icon ion-star button-assertive"
+                     ng-click="toggleStar(contact)" ng-show="contact.star">
+                  </button>
+                  <ion-option-button class="button-dark" ng-click="toggleStar(contact)">
+                     <i class="ion-star"></i>
+                  </ion-option-button>
+                  <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(contact)">
+                  </ion-delete-button>
+                  <ion-reorder-button class="ion-navicon" 
+                    on-reorder="moveItem(contact, $fromIndex, $toIndex)">
+                  </ion-reorder-button>
+               </ion-item>
+            </ion-list>
+
+      </ion-content>
+      
+</ion-view>
