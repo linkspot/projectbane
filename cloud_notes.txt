@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/28097152/amazon-dynamodb-and-angularjs
+http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/browser-intro.html
+http://www.ng-newsletter.com/posts/aws-js-sdk.html
