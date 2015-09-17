@@ -41,6 +41,7 @@ angular.module('linkspot', ['ionic', 'ngCordova'])
   // Each tab has its own nav history stack:
 
   .state('tab.profile', {
+    cache: false,
     url: '/profile',
     views: {
       'tab-profile': {

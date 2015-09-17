@@ -1,6 +1,6 @@
 angular.module('linkspot')
 
-.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', function($scope, $cordovaCamera, $ionicPlatform) {
+.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', function($scope, $cordovaCamera, $ionicPlatform, CameraService) {
     $ionicPlatform.ready(function() {
       console.log("device is ready")
         $scope.takePicture = function() {
@@ -17,8 +17,14 @@ angular.module('linkspot')
             };
 
             $cordovaCamera.getPicture(options).then(function(imageData) {
-                  var image = document.getElementById('myImage');
-                  image.src = "data:image/jpeg;base64," + imageData;
+              // Test
+              var image = document.getElementById('myImage');
+              image.src = "data:image/jpeg;base64," + imageData;
+
+              // TODO: Not clearing cache on phone.
+              CameraService.setProfile("data:image/jpeg;base64," + imageData);
+
+
             }, function(err) {
               // error
             });
