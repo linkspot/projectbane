@@ -1,1 +1,23 @@
 /* Empty. Add your own CSS if you like */
+
+.contacts-column {
+  width: 32%;
+  display: inline-block;
+  border: none;
+  margin: 1px;
+  text-align: center
+}
+
+.contacts-column-img {
+	width: 100%;
+}
+
+.contacts-column .item-content {
+	padding: 0;
+}
+
+.contacts-category-container .list {
+	margin-left: -1px;
+	margin-right: -10px;
+	margin-top: -2px;
+}
