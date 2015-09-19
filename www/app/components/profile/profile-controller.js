@@ -1,5 +1,9 @@
 angular.module('linkspot')
 
 .controller('ProfileCtrl', function($scope, CameraService) {
-	$scope.profilePhoto = CameraService.getProfile();
+	$scope.$on( "$ionicView.enter", function() {
+        $scope.profilePhoto = CameraService.getProfile();
+        console.log("entered");
+    });
+	
 });

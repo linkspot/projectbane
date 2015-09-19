@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
 .factory('CameraService', function() {
-	var image = "";
+	var image = "Hello";
 
 	return {
 		setProfile: function(imageData) {
