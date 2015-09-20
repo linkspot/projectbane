@@ -74,6 +74,16 @@ angular.module('linkspot')
         }
       }
       return null;
+    },
+    add: function(contact) {
+      var id = contacts.length;
+      var image = contact;
+      console.log(id);
+      console.log(image);
+      contacts.push({
+        id: id,
+        face: image
+      });
     }
   };
 });

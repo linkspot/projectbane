@@ -1,5 +1,11 @@
 angular.module('linkspot')
 
-.controller('ContactsDetailCtrl', function($scope, $stateParams, Contacts) {
-  $scope.contact = Contacts.get($stateParams.contactId);
-});
+.controller('ContactsDetailCtrl', ['$scope', '$stateParams', 'Contacts', function($scope, $stateParams, Contacts) {
+
+  	$scope.$on( "$ionicView.enter", function() {
+        $scope.contact = Contacts.get($stateParams.contactId);
+        console.log($scope.contact.face);
+        console.log($stateParams.contactId);
+        console.log("entered");
+    });
+}]);

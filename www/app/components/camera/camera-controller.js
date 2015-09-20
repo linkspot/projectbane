@@ -1,11 +1,12 @@
 angular.module('linkspot')
 
-.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'CameraService', '$cordovaDevice', function($scope, $cordovaCamera, $ionicPlatform, CameraService, $cordovaDevice) {
+.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', '$cordovaDevice', '$state', function($scope, $cordovaCamera, $ionicPlatform, Contacts, $cordovaDevice, $state) {
     $scope.options = "hello";
     $ionicPlatform.ready(function() {
         console.log("device is ready");
         var device = $cordovaDevice.getDevice();
         $scope.options = device;
+        $scope.newID = "";
         $scope.takePicture = function() {
             console.log("taking picture");
             var options = {
@@ -21,19 +22,25 @@ angular.module('linkspot')
                   correctOrientation: true
             };
 
-            //$scope.options = options;
+            $scope.options = options;
 
-            $cordovaCamera.getPicture(options).then(function(imageData) {
+            $cordovaCamera.getPicture(options)
+            .then(function(imageData) {
               // Test
               var image = document.getElementById('myImage');
               image.src = "data:image/jpeg;base64," + imageData;
               // TODO: Not clearing cache on phone.
-              CameraService.setProfile("data:image/jpeg;base64," + imageData);
-
+              Contacts.add(image.src);
+              return Contacts.all().length - 1;
+              console.log(Contacts.all());
+              console.log(Contacts.all().length);
               // movePic(imageData);
 
             }, function(err) {
-              // error
+              alert(err);
+            })
+            .then(function(newID) {
+                $state.go('tab.contacts-detail', { "contactId": newID });
             });
         }
 
