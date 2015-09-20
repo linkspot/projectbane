@@ -1,12 +1,13 @@
 angular.module('linkspot')
 
-.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'CameraService', '$cordovaDevice', function($scope, $cordovaCamera, $ionicPlatform, CameraService, $cordovaDevice) {
+.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', '$cordovaDevice', '$state', function($scope, $cordovaCamera, $ionicPlatform, Contacts, $cordovaDevice, $state) {
     $scope.options = "hello";
 
     $ionicPlatform.ready(function() {
         console.log("device is ready");
         // var device = $cordovaDevice.getDevice();
         // $scope.options = device;
+        $scope.newID = "";
         $scope.takePicture = function() {
             console.log("taking picture");
             var options = {
@@ -22,29 +23,36 @@ angular.module('linkspot')
                 correctOrientation: true
             };
 
-            //$scope.options = options;
+            $scope.options = options;
 
-            // $cordovaCamera.getPicture(options).then(function(imageData) {
+            $cordovaCamera.getPicture(options)
+            .then(function(imageData) {
+              // Test
+              var image = document.getElementById('myImage');
+              image.src = "data:image/png;base64," + imageData;
+              Contacts.add(image.src);
+              return Contacts.all().length - 1;
+              console.log(Contacts.all());
+              console.log(Contacts.all().length);
+
+            }, function(err) {
+              alert(err);
+            })
+            .then(function(newID) {
+                $state.go('tab.contacts-detail', { "contactId": newID });
+            });
+
+            // options["destinationType"] = Camera.DestinationType.FILE_URI;
+            // $cordovaCamera.getPicture(options)
+            // .then(function(imageURI) {
             //     // Test
             //     var image = document.getElementById('myImage');
-            //     image.src = "data:image/png;base64," + imageData;
+            //     image.src = imageURI;
+            //     $scope.options = imageURI;
 
-            //     CameraService.setProfile("data:image/png;base64," + imageData);
-
-            // }, function(err) {
-            //     // error
-            // });
-
-            options["destinationType"] = Camera.DestinationType.FILE_URI;
-            $cordovaCamera.getPicture(options).then(function(imageURI) {
-                // Test
-                var image = document.getElementById('myImage');
-                image.src = imageURI;
-                $scope.options = imageURI;
-
-                CameraService.setProfile(imageURI);
-                $scope.movePic(imageURI);
-            })
+            //     CameraService.setProfile(imageURI);
+            //     $scope.movePic(imageURI);
+            // })
         }
 
         $scope.movePic = function(file){
