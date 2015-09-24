@@ -1,29 +1,14 @@
 <ion-view view-title="Profile">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
+    <ion-content>
+when there is a profile picture, show the image tag
+when there is no profile picture, show the div with teh button to take a picture
         <div>
-          There is a fire in <b>sector 3</b>
+            <div ng-hide="profilePhoto">
+                <button ng-click="showActionSheet()">Take A Profile Picture</button>
+            </div>
+            <img ng-show="profilePhoto" id="profilePhoto" ng-src="{{profilePhoto}}" alt="Your Business Card"></img>
         </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
-    </div>
-    <img id="profilePhoto" ng-src="{{profilePhoto}}" alt="Your Business Card"></img>
-  </ion-content>
+
+
+    </ion-content>
 </ion-view>

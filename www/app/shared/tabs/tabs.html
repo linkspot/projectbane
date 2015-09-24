@@ -5,20 +5,21 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/profile">
+  <!-- Profile Tab -->
+  <ion-tab title="Profile" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/profile">
     <ion-nav-view name="tab-profile"></ion-nav-view>
   </ion-tab>
 
-  <!-- Chats Tab -->
-  <ion-tab title="Contacts" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/contacts">
+  <!-- Camera Tab -->
+  <ion-tab title="Camera" icon-off="ion-ios-camera-outline" icon-on="ion-ios-camera" href="#/tab/camera">
+    <ion-nav-view name="tab-camera"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Contacts Tab -->
+  <ion-tab title="Contacts" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/contacts">
     <ion-nav-view name="tab-contacts"></ion-nav-view>
   </ion-tab>
 
-  <!-- Account Tab -->
-  <ion-tab title="Camera" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/camera">
-    <ion-nav-view name="tab-camera"></ion-nav-view>
-  </ion-tab>
 
 
 </ion-tabs>
