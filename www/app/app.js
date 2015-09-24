@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in all files with 'factory' in the name
 // 'starter.controllers' is found in all files with 'controller' in the name
-angular.module('linkspot', ['ionic', 'ngCordova'])
+angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

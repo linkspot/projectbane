@@ -6,6 +6,5 @@ angular.module('linkspot')
         $scope.contact = Contacts.get($stateParams.contactId);
         console.log($scope.contact.face);
         console.log($stateParams.contactId);
-        console.log("entered");
     });
 }]);
