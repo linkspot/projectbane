@@ -4,7 +4,6 @@ angular.module('linkspot')
     $scope.options = "hello";
 
     $ionicPlatform.ready(function() {
-        console.log("device is ready");
         // var device = $cordovaDevice.getDevice();
         // $scope.options = device;
         $scope.newID = "";
