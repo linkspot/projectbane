@@ -45,7 +45,7 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
     url: '/profile',
     views: {
       'tab-profile': {
-        templateUrl: 'app/components/profile/tab-profile.html',
+        templateUrl: 'app/components/user/tab-profile.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -69,7 +69,6 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
         }
       }
     })
-
   .state('tab.camera', {
     url: '/camera',
     views: {
@@ -78,10 +77,20 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
         controller: 'CameraCtrl'
       }
     }
+  })
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'app/components/user/signup.html',
+    controller: 'SignupController'
+  })
+  .state('login', {
+     url: '/login',
+     templateUrl: 'app/components/user/login.html',
+     controller: 'LoginController'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/profile');
+  $urlRouterProvider.otherwise('/login');
 
 });
 
