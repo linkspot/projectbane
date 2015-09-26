@@ -1,6 +1,6 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', 'CameraService', '$ionicActionSheet', '$timeout', function($scope, CameraService, $ionicActionSheet, $timeout) {
+.controller('ProfileCtrl', ['$scope', '$state', 'CameraService', '$ionicActionSheet', '$timeout', function($scope, $state, CameraService, $ionicActionSheet, $timeout) {
 
 	$scope.$on( "$ionicView.enter", function() {
         $scope.profilePhoto = CameraService.getProfile();
@@ -24,12 +24,15 @@ angular.module('linkspot')
 	            console.log('CAMERA ACTIONSHEET BUTTON CLICKED', index);
 	            if (index === 0) {
 	                options = {quality : 50, destinationType : 1, sourceType : 1, correctOrientation : true};
+	                console.log(options);
+	                $state.go('tab.camera');
 	            } else if (index === 1) {
 	                options = {quality : 50, destinationType : 1, sourceType : 0, correctOrientation : true};
+	            	console.log(options);
 	            }                      
-	            if (callback && typeof(callback) === "function") {
-	                callback();
-	            }                                                       
+	            // if (callback && typeof(callback) === "function") {
+	            //     callback();
+	            // }                                                       
 	            return true;
         	}
 	   });
