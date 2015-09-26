@@ -2,7 +2,8 @@ angular.module('linkspot')
 
 .factory('Contacts', ['$firebaseArray', function($firebaseArray) {
   // Might use a resource here that returns a JSON array
-  var dataRef = new Firebase("https://linkspot.firebaseIO.com/users");
+  // TODO: needs to somehow find the user id of the logged in user.
+  var dataRef = new Firebase("https://linkspot.firebaseIO.com/contacts");
   var contacts = $firebaseArray(dataRef);
 
   return {
@@ -21,15 +22,18 @@ angular.module('linkspot')
       }
       return null;
     },
-    add: function(contact) {
-      var id = contacts.length;
-      var image = contact;
-      console.log(id);
+    add: function(imageSrc) {
+      // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
+      var lastId = contacts.length - 1;
+      var currId = contacts[lastId].id + 1;
+      var image = imageSrc;
+      console.log(currId);
       console.log(image);
       contacts.$add({
-        id: id,
+        id: currId,
         face: image
       });
+      return currId;
     }
   };
 

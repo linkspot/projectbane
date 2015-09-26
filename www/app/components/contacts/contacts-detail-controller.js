@@ -1,10 +1,14 @@
 angular.module('linkspot')
 
-.controller('ContactsDetailCtrl', ['$scope', '$stateParams', 'Contacts', function($scope, $stateParams, Contacts) {
-
+.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', 'Contacts', function($scope, $state, $stateParams, Contacts) {
   	$scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
-        console.log($scope.contact.face);
-        console.log($stateParams.contactId);
+        console.log("control detail contact face: " + $scope.contact.face);
+        console.log("control detail contact id: " + $stateParams.contactId);
     });
+
+    $scope.removeContact = function() {
+    	Contacts.remove($scope.contact);
+    	$state.go('tab.contacts');
+    }
 }]);
