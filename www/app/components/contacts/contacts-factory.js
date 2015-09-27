@@ -25,7 +25,8 @@ angular.module('linkspot')
     add: function(imageSrc) {
       // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
       var lastId = contacts.length - 1;
-      var currId = contacts[lastId].id + 1;
+      var currId = 0;
+      if (lastId >= 0) currId = contacts[lastId].id + 1;
       var image = imageSrc;
       console.log(currId);
       console.log(image);

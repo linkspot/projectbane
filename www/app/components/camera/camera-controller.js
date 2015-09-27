@@ -33,7 +33,7 @@ angular.module('linkspot')
               alert(err);
             })
             .then(function(newID) {
-                if (newID > 0) {
+                if (newID >= 0) {
                   $state.go('tab.contacts-detail', { "contactId": newID });
                 }
                 
