@@ -1,6 +1,6 @@
 angular.module('linkspot')
 
-.factory('CameraService', [function() {
+.factory('Camera', [function() {
 	var image = "";
 
 	return {

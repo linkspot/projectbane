@@ -1,9 +1,21 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', 'CameraService', '$ionicActionSheet', '$timeout', function($scope, $state, CameraService, $ionicActionSheet, $timeout) {
+.controller('ProfileCtrl', ['$scope', '$state', 'Camera', '$ionicActionSheet', '$timeout', 'Users',
+	function($scope, $state, Camera, $ionicActionSheet, $timeout, Users) {
 
 	$scope.$on( "$ionicView.enter", function() {
-        $scope.profilePhoto = CameraService.getProfile();
+        $scope.profilePhoto = Camera.getProfile();
+    	
+        var dataRef = Users.getFirebaseRef();
+        console.log("FIREBASE REFERENCE = " + dataRef);
+
+        var currentUserId = dataRef.getAuth().uid
+        console.log("LOGGED IN USER ID = " + dataRef.getAuth().uid)
+
+        var userInfo = Users.get(currentUserId)
+        $scope.id = currentUserId;
+        $scope.fullName = userInfo.name;
+        $scope.email = userInfo.email;
     });
 
     // Triggered on a button click, or some other target

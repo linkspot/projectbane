@@ -1,5 +1,13 @@
 angular.module('linkspot')
-	.controller('LoginController', ['$scope', '$state', function($scope, $state) {
+	.controller('LoginController', ['$scope', '$state', 'Users', function($scope, $state, Users) {
+
+		$scope.$on( "$ionicView.enter", function() {
+
+	        var dataRef = Users.getFirebaseRef();
+	        console.log("FIREBASE REFERENCE = " + dataRef.getAuth().uid);
+	        dataRef.unauth();
+	        console.log("LOGGED IN USER ID = " + dataRef.getAuth().uid);
+    	});
 
 	    $scope.logIn = function(submittedForm) {
 
