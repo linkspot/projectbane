@@ -5,15 +5,9 @@ angular.module('linkspot')
 
 	$scope.$on( "$ionicView.enter", function() {
         $scope.profilePhoto = Camera.getProfile();
-    	
-        var dataRef = Users.getFirebaseRef();
-        console.log("FIREBASE REFERENCE = " + dataRef);
 
-        var currentUserId = dataRef.getAuth().uid
-        console.log("LOGGED IN USER ID = " + dataRef.getAuth().uid)
-
-        var userInfo = Users.get(currentUserId)
-        $scope.id = currentUserId;
+        var userInfo = Users.get()
+        $scope.id = userInfo.id;
         $scope.fullName = userInfo.name;
         $scope.email = userInfo.email;
     });

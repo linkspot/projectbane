@@ -30,11 +30,15 @@ angular.module('linkspot')
 		        			
 	        				var newUserAuth = ref.getAuth();
 	        				var uid = ref.getAuth().uid;
+	        				console.log("signup controller UID = " + uid)
 	        				Users.add(uid, fullName, email);
 
+		                	Users.setUserId(uid, function() {
+		                		$state.go('tab.profile');
+		                	});
+
 		        		});
-		               
-		                $state.go('tab.profile');
+
 		            }
 		    	}
 
