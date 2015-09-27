@@ -1,5 +1,11 @@
 angular.module('linkspot')
-	.controller('LoginController', ['$scope', '$state', function($scope, $state) {
+	.controller('LoginController', ['$scope', '$state', 'Users', function($scope, $state, Users) {
+
+		$scope.$on( "$ionicView.enter", function() {
+			// when user gets to login page, log the user out
+	        var dataRef = Users.getFirebaseRef();
+	        dataRef.unauth();
+    	});
 
 	    $scope.logIn = function(submittedForm) {
 
@@ -11,7 +17,12 @@ angular.module('linkspot')
 	                	+ " is logged in with " + authData.provider
 	                	+ " with token " + authData.token
 	                	+ " and expires on " + authData.expires, authData.uid);
-	                $state.go('tab.profile');
+
+                	Users.setUserId(authData.uid, function(){
+                		$state.go('tab.profile');
+                	});
+
+	                
 	            }
 	    	}
 

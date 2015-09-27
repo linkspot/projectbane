@@ -1,5 +1,5 @@
 angular.module('linkspot')
-	.controller('SignupController', ['$scope', '$state', function($scope, $state) {
+	.controller('SignupController', ['$scope', '$state', 'Users', function($scope, $state, Users) {
 
 		$scope.error = { isLoading: false };
 		$scope.errorMessage = "Error";
@@ -8,6 +8,10 @@ angular.module('linkspot')
 
 	    	if (submittedForm.password === submittedForm.passwordConfirm) {
 	    		// Also add in error check for no fields populated
+
+	    		var email = submittedForm.email
+	    		var password = submittedForm.password  
+	    		var fullName = submittedForm.fullName;
 
 		    	function authHandler(error, authData) {
 		            if (error) {
@@ -20,23 +24,30 @@ angular.module('linkspot')
 						$scope.$apply();
 
 		                ref.authWithPassword({
-				            "email": submittedForm.email,
-				            "password": submittedForm.password  
+				            "email": email,
+				            "password": password  
 		        		}, function(authData) {
 		        			
 	        				var newUserAuth = ref.getAuth();
+	        				var uid = ref.getAuth().uid;
+	        				console.log("signup controller UID = " + uid)
+	        				Users.add(uid, fullName, email);
+
+		                	Users.setUserId(uid, function() {
+		                		$state.go('tab.profile');
+		                	});
 
 		        		});
-		               
-		                $state.go('tab.profile');
+
 		            }
 		    	}
 
-		        var ref = new Firebase("https://linkspot.firebaseIO.com/users");
+		    	var ref = Users.getFirebaseRef();
 		        ref.createUser({
-		            "email": submittedForm.email,
-		            "password": submittedForm.password  
+		            "email": email,
+		            "password": password  
 		        }, authHandler)
+
 	    	} else {
 	    		$scope.errorMessage = "Passwords need to match.";
 				$scope.error.isLoading = true;

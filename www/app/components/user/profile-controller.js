@@ -1,9 +1,15 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', 'CameraService', '$ionicActionSheet', '$timeout', function($scope, $state, CameraService, $ionicActionSheet, $timeout) {
+.controller('ProfileCtrl', ['$scope', '$state', 'Camera', '$ionicActionSheet', '$timeout', 'Users',
+	function($scope, $state, Camera, $ionicActionSheet, $timeout, Users) {
 
 	$scope.$on( "$ionicView.enter", function() {
-        $scope.profilePhoto = CameraService.getProfile();
+        $scope.profilePhoto = Camera.getProfile();
+
+        var userInfo = Users.get()
+        $scope.id = userInfo.id;
+        $scope.fullName = userInfo.name;
+        $scope.email = userInfo.email;
     });
 
     // Triggered on a button click, or some other target
