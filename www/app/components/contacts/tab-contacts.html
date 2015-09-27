@@ -7,17 +7,7 @@
     </ion-item>
     <ion-list class="contacts-category-container">
       <ion-item class="contacts-column" ng-repeat="contact in contacts" href="#/tab/contacts/{{contact.id}}">
-        <img class="contacts-column-img" ng-src="{{contact.face}}">
-        <h2>{{contact.name}}</h2>
-      </ion-item>
-    </ion-list>
-
-    <ion-item class="item-divider item-dark">
-        Entertainment
-    </ion-item>
-    <ion-list class="contacts-category-container">
-      <ion-item class="contacts-column" ng-repeat="contact in contacts" href="#/tab/contacts/{{contact.id}}">
-        <img class="contacts-column-img" ng-src="{{contact.face}}">
+        <img class="contacts-column-img" ng-src="{{contact.card}}">
         <h2>{{contact.name}}</h2>
       </ion-item>
     </ion-list>

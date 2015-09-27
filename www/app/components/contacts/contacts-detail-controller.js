@@ -10,6 +10,11 @@ angular.module('linkspot')
         $scope.contact = Contacts.get($stateParams.contactId);
     });
 
+  	$scope.updateContact = function() {
+  		$scope.contact.notes = "Hello";
+  		Contacts.update($scope.contact);
+  	}
+
     $scope.removeContact = function() {
     	Contacts.remove($scope.contact);
     	$state.go('tab.contacts');
@@ -22,4 +27,5 @@ angular.module('linkspot')
 	    history.stateName = "tab.contacts";
 	    history.title = "Contacts";
     }
+
 }]);

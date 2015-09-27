@@ -10,9 +10,18 @@ angular.module('linkspot')
     all: function() {
       return contacts;
     },
-    remove: function(contact) {
-      // contacts.splice(contacts.indexOf(contact), 1);
-      contacts.$remove(contact);
+    add: function(imageSrc) {
+      // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
+      var lastId = contacts.length - 1;
+      var currId = 0;
+      if (lastId >= 0) currId = contacts[lastId].id + 1;
+      var image = imageSrc;
+      contacts.$add({
+        id: currId,
+        card: image,
+        notes: "Tap here to write down notes."
+      });
+      return currId;
     },
     get: function(contactId) {
       for (var i = 0; i < contacts.length; i++) {
@@ -22,19 +31,12 @@ angular.module('linkspot')
       }
       return null;
     },
-    add: function(imageSrc) {
-      // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
-      var lastId = contacts.length - 1;
-      var currId = 0;
-      if (lastId >= 0) currId = contacts[lastId].id + 1;
-      var image = imageSrc;
-      console.log(currId);
-      console.log(image);
-      contacts.$add({
-        id: currId,
-        face: image
-      });
-      return currId;
+    update: function(contact) {
+      contacts.$save(contact);
+    },
+    remove: function(contact) {
+      // contacts.splice(contacts.indexOf(contact), 1);
+      contacts.$remove(contact);
     }
   };
 

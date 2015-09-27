@@ -1,6 +1,6 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$ionicHistory', 'Contacts', function($scope, $state, $ionicHistory, Contacts) {
+.controller('ContactsCtrl', ['$scope', '$state', 'Contacts', function($scope, $state, Contacts) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -8,9 +8,6 @@ angular.module('linkspot')
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  var history = $ionicHistory.currentView();
-  console.log(history);
 
   $scope.contacts = Contacts.all();
 

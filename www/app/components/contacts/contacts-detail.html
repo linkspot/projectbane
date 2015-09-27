@@ -7,11 +7,11 @@
 <ion-view view-title="{{contact.name}}">
   <ion-content class="padding">
     <div class="item item-body">
-    <img class="full-image" src="{{contact.face}}">
+    <img class="full-image" src="{{contact.card}}">
     <h2>{{ contact.name }}</h2>
 
     <p>
-        This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting of an image and paragraph text.
+        {{ contact.notes }}
     </p>
   </div>
   <ion-list type="list-inset">
@@ -24,7 +24,7 @@
           <span class="item-note">firstnamelast@gmail.com</span>          
       </ion-item>
   </ion-list>
-
+  <button ng-click="updateContact()"> Update Contact </button>
   <button ng-click="removeContact()"> Delete Contact </button>
 
   </ion-content>
