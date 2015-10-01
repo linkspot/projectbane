@@ -11,7 +11,6 @@ angular.module('linkspot')
     });
 
   	$scope.updateContact = function() {
-  		$scope.contact.notes = "Hello";
   		Contacts.update($scope.contact);
   	}
 
