@@ -1,18 +1,26 @@
 <ion-view view-title="Profile">
     <ion-content>
-when there is a profile picture, show the image tag
-when there is no profile picture, show the div with teh button to take a picture
-        <div>
-            <div ng-hide="profilePhoto">
+        <div class="item item-body">
+            <div ng-hide="user.card">
                 <button ng-click="showActionSheet()">Take A Profile Picture</button>
             </div>
-            <img ng-show="profilePhoto" id="profilePhoto" ng-src="{{profilePhoto}}" alt="Your Business Card"></img>
+            <img ng-show="user.card" id="user.card" ng-src="{{user.card}}" alt="Your Business Card" ng-click="showActionSheet()"></img>
+            <h2>{{ user.name }}</h2>
         </div>
 
-        <div>
-        	{{ fullName }} - {{ id }} - {{ email }}
-        </div>
+        <ion-list type="list-inset">
 
+            <ion-item class="item item-icon-left item-inset">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive"></i>
+                <span class="item-note">714-732-9082</span>          
+            </ion-item>
+
+            <ion-item class="item item-icon-left item-inset">
+                <i class="icon ion-email ion-positive"></i>
+                <span class="item-note">{{user.email}}</span>          
+            </ion-item>
+
+        </ion-list>
 
     </ion-content>
 </ion-view>

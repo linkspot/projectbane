@@ -33,25 +33,29 @@ angular.module('linkspot')
     all: function() {
       	return users;
     },
-    remove: function(user) {
-      	// users.splice(users.indexOf(user), 1);
-      	users.$remove(user);
-    },
+
     get: function() {
       	for (var i = 0; i < users.length; i++) {
         	if (users[i].id === userId) {
           		return users[i];
         	}
       	}
-      return null;
+        return null;
     },
   	getFirebaseRef: function() {
   		return dataRef;
   	},
+    remove: function(user) {
+        // users.splice(users.indexOf(user), 1);
+        users.$remove(user);
+    },
     setUserId: function(userId, callback) {
-		userId = userId;
-		authDataCallback;
-		callback();
+  		userId = userId;
+  		authDataCallback;
+  		callback();
+    },
+    update: function(user) {
+        users.$save(user);
     }
   };
 

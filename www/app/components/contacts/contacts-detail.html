@@ -5,29 +5,31 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{contact.name}}">
-  <ion-content>
-    <div>
-    <img class="full-image" src="{{contact.card}}">
-    <h2>{{ contact.name }}</h2>
 
+    <ion-content>
     
-  </div>
+        <div>
+            <img class="full-image" src="{{contact.card}}">
+            <h2>{{ contact.name }}</h2>
+        </div>
 
-  <div class="list">
-  <label class="item item-input">
-    <textarea type="text" ng-model="contact.notes" placeholder="Notes">{{ contact.notes }}</textarea>
-  </label>
-  <label class="item item-input">
-    <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
-    <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
-  </label>
-  <label class="item item-input">
-    <i class="icon ion-email ion-positive placeholder-icon"></i>
-    <input type="email" ng-model="contact.emailln" placeholder="email@example.com">
-  </label>
-</div>
-  <button ng-click="updateContact()"> Update Contact </button>
-  <button ng-click="removeContact()"> Delete Contact </button>
+        <div class="list">
+            <label class="item item-input">
+                <textarea type="text" ng-model="contact.notes" placeholder="Notes">{{ contact.notes }}</textarea>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-email ion-positive placeholder-icon"></i>
+                <input type="email" ng-model="contact.emailln" placeholder="email@example.com">
+            </label>
+        </div>
 
-  </ion-content>
+        <button ng-click="updateContact()"> Update Contact </button>
+        <button ng-click="removeContact()"> Delete Contact </button>
+
+    </ion-content>
+
 </ion-view>

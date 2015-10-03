@@ -1,10 +1,10 @@
 angular.module('linkspot')
 
-.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', '$cordovaDevice', '$state', function($scope, $cordovaCamera, $ionicPlatform, Contacts, $cordovaDevice, $state) {
+.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', '$state', 
+            function($scope, $cordovaCamera, $ionicPlatform, Contacts, $state) {
+
     $ionicPlatform.ready(function() {
-        // var device = $cordovaDevice.getDevice();
-        // $scope.options = device;
-        $scope.newID = "";
+
         $scope.takePicture = function() {
             var options = {
                 quality: 50,
@@ -24,7 +24,7 @@ angular.module('linkspot')
               if(imageData != null) {
                 var imageSrc = "data:image/jpeg;base64," + imageData;
                 var id = Contacts.add(imageSrc);
-                return id
+                return id;
               }
               else {
                 return -1;
@@ -36,9 +36,8 @@ angular.module('linkspot')
                 if (newID >= 0) {
                   $state.go('tab.contacts-detail', { "contactId": newID });
                 }
-                
             });
         }
-    });    
+    });  
 
   }]);

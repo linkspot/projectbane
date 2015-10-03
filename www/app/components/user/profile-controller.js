@@ -1,20 +1,19 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', 'Camera', '$ionicActionSheet', '$timeout', 'Users',
-	function($scope, $state, Camera, $ionicActionSheet, $timeout, Users) {
+.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicActionSheet', '$ionicPlatform','$timeout', 'Users', 'Contacts',
+	function($scope, $state, $cordovaCamera, $ionicActionSheet, $ionicPlatform, $timeout, Users, Contacts) {
 
 	$scope.$on( "$ionicView.enter", function() {
-        $scope.profilePhoto = Camera.getProfile();
-
-        var userInfo = Users.get()
-        $scope.id = userInfo.id;
-        $scope.fullName = userInfo.name;
-        $scope.email = userInfo.email;
+        // $scope.profilePhoto = Camera.getProfile();
+        $scope.user = Users.get();
+        // $scope.id = userInfo.id;
+        // $scope.fullName = userInfo.name;
+        // $scope.email = userInfo.email;
+        // $scope.profilePhoto = userInfo.card;
     });
 
     // Triggered on a button click, or some other target
 	$scope.showActionSheet = function() {
-
 	   // Show the action sheet
 	   var hideSheet = $ionicActionSheet.show({
      	buttons: [
@@ -27,14 +26,33 @@ angular.module('linkspot')
 	          // add cancel code..
 	        },
 	     	buttonClicked: function(index) {
-	            console.log('CAMERA ACTIONSHEET BUTTON CLICKED', index);
+	            // console.log('CAMERA ACTIONSHEET BUTTON CLICKED', index);
 	            if (index === 0) {
-	                options = {quality : 50, destinationType : 1, sourceType : 1, correctOrientation : true};
-	                console.log(options);
-	                $state.go('tab.camera');
+	            	options = {
+		                quality: 50,
+		                destinationType: Camera.DestinationType.DATA_URL,
+		                sourceType: Camera.PictureSourceType.CAMERA,
+		                allowEdit: true,
+		                encodingType: Camera.EncodingType.JPEG,
+		                targetWidth: 350,
+		                targetHeight: 200,
+		                popoverOptions: CameraPopoverOptions,
+		                saveToPhotoAlbum: false,
+		                correctOrientation: true
+		            };
+	                $scope.setProfilePicture(options);
 	            } else if (index === 1) {
-	                options = {quality : 50, destinationType : 1, sourceType : 0, correctOrientation : true};
-	            	console.log(options);
+	                options = {
+	                	quality : 50, 
+	                	destinationType : Camera.DestinationType.DATA_URL, 
+	                	sourceType : 0, 
+	                	allowEdit: true,
+		                encodingType: Camera.EncodingType.JPEG,
+		                targetWidth: 350,
+		                targetHeight: 200,
+	                	correctOrientation : true
+	                };
+	                $scope.setProfilePicture(options);
 	            }                      
 	            // if (callback && typeof(callback) === "function") {
 	            //     callback();
@@ -42,12 +60,28 @@ angular.module('linkspot')
 	            return true;
         	}
 	   });
-
-	   // For example's sake, hide the sheet after two seconds
-	 //   $timeout(function() {
-		// 	hideSheet();
-		// }, 5000);
-
 	}
+
+	$ionicPlatform.ready(function() {
+
+        $scope.setProfilePicture = function(options) {
+            $cordovaCamera.getPicture(options)
+            .then(function(imageData) {
+				if(imageData != null) {
+					var imageSrc = "data:image/jpeg;base64," + imageData;
+					var user = Users.get();
+					user.card = imageSrc;
+					Users.update(user);
+				}
+            }, 
+            function(err) {
+				alert(err);
+            })
+            .then(function() {
+            	$state.go($state.current, {}, {reload: true});
+            });
+        }
+    });
+
 	
 }]);
