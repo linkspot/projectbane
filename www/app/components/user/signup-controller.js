@@ -19,7 +19,7 @@ angular.module('linkspot')
 		                $scope.error.isLoading = true;
 						$scope.$apply();
 		            } else {
-		                alert("Authenticated successfully with payload " + authData.uid, authData.uid);
+		                // alert("Authenticated successfully with payload " + authData.uid, authData.uid);
 						$scope.error.isLoading = false;
 						$scope.$apply();
 

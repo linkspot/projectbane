@@ -21,10 +21,6 @@ angular.module('linkspot')
         $state.go('tab.contacts');
     }
 
-    $scope.allContactsPage = function() {
-        $state.go('tab.contacts');
-    }
-
     var forceBackButton = function() {
         var history = $ionicHistory.backView();
         console.log(history);
