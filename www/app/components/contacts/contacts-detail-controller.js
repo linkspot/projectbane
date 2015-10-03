@@ -11,6 +11,7 @@ angular.module('linkspot')
     });
 
   	$scope.updateContact = function() {
+      console.log($scope.contact);
   		Contacts.update($scope.contact);
   	}
 

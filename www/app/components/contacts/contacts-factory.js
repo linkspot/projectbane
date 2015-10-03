@@ -19,7 +19,7 @@ angular.module('linkspot')
       contacts.$add({
         id: currId,
         card: image,
-        notes: "Tap here to write down notes."
+        notes: ""
       });
       return currId;
     },
