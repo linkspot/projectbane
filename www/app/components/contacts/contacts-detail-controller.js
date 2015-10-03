@@ -11,11 +11,11 @@ angular.module('linkspot')
     $scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
     });
-
-    $scope.updateContact = function() {
-        Contacts.update($scope.contact);
-    }
-
+    
+  	$scope.updateContact = function() {
+      console.log($scope.contact);
+  		Contacts.update($scope.contact);
+  	}
     $scope.removeContact = function() {
         Contacts.remove($scope.contact);
         $state.go('tab.contacts');

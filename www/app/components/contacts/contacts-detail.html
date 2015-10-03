@@ -6,30 +6,26 @@
 -->
 <ion-view view-title="{{contact.name}}">
 
-    <ion-content class="padding">
-
-        <div class="item item-body">
-            <img class="full-image" src="{{contact.card}}"></img>
+    <ion-content>
+    
+        <div>
+            <img class="full-image" src="{{contact.card}}">
             <h2>{{ contact.name }}</h2>
-
-            <p>
-                {{ contact.notes }}
-            </p>
         </div>
-        
-        <ion-list type="list-inset">
 
-            <ion-item class="item item-icon-left item-inset">
-                <i class="icon ion-ios-telephone ion-android-call ion-positive"></i>
-                <span class="item-note">714-732-9082</span>          
-            </ion-item>
-
-            <ion-item class="item item-icon-left item-inset">
-                <i class="icon ion-email ion-positive"></i>
-                <span class="item-note">firstnamelast@gmail.com</span>          
-            </ion-item>
-
-        </ion-list>
+        <div class="list">
+            <label class="item item-input">
+                <textarea type="text" ng-model="contact.notes" placeholder="Notes">{{ contact.notes }}</textarea>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-email ion-positive placeholder-icon"></i>
+                <input type="email" ng-model="contact.emailln" placeholder="email@example.com">
+            </label>
+        </div>
 
         <button ng-click="updateContact()"> Update Contact </button>
         <button ng-click="removeContact()"> Delete Contact </button>
