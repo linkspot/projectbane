@@ -5,27 +5,36 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{contact.name}}">
-  <ion-content class="padding">
-    <div class="item item-body">
-    <img class="full-image" src="{{contact.card}}">
-    <h2>{{ contact.name }}</h2>
 
-    <p>
-        {{ contact.notes }}
-    </p>
-  </div>
-  <ion-list type="list-inset">
-      <ion-item class="item item-icon-left item-inset">
-          <i class="icon ion-ios-telephone ion-android-call ion-positive"></i>
-          <span class="item-note">714-732-9082</span>          
-      </ion-item>
-      <ion-item class="item item-icon-left item-inset">
-          <i class="icon ion-email ion-positive"></i>
-          <span class="item-note">firstnamelast@gmail.com</span>          
-      </ion-item>
-  </ion-list>
-  <button ng-click="updateContact()"> Update Contact </button>
-  <button ng-click="removeContact()"> Delete Contact </button>
+    <ion-content class="padding">
+    
+        <button ng-click="allContactsPage()"> All Contacts </button>
+        <div class="item item-body">
+            <img class="full-image" src="{{contact.card}}"></img>
+            <h2>{{ contact.name }}</h2>
 
-  </ion-content>
+            <p>
+                {{ contact.notes }}
+            </p>
+        </div>
+        
+        <ion-list type="list-inset">
+
+            <ion-item class="item item-icon-left item-inset">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive"></i>
+                <span class="item-note">714-732-9082</span>          
+            </ion-item>
+
+            <ion-item class="item item-icon-left item-inset">
+                <i class="icon ion-email ion-positive"></i>
+                <span class="item-note">firstnamelast@gmail.com</span>          
+            </ion-item>
+
+        </ion-list>
+
+        <button ng-click="updateContact()"> Update Contact </button>
+        <button ng-click="removeContact()"> Delete Contact </button>
+
+    </ion-content>
+
 </ion-view>
