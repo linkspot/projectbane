@@ -7,15 +7,14 @@
 <ion-view view-title="{{contact.name}}">
 
     <ion-content>
-    
         <div>
             <img class="full-image" src="{{contact.card}}">
-            <h2>{{ contact.name }}</h2>
         </div>
 
         <div class="list">
             <label class="item item-input">
-                <textarea type="text" ng-model="contact.notes" placeholder="Notes">{{ contact.notes }}</textarea>
+                <i class="icon ion-person ion-positive placeholder-icon"></i>
+                <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
             </label>
             <label class="item item-input">
                 <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
@@ -23,7 +22,11 @@
             </label>
             <label class="item item-input">
                 <i class="icon ion-email ion-positive placeholder-icon"></i>
-                <input type="email" ng-model="contact.emailln" placeholder="email@example.com">
+                <input type="email" ng-model="contact.email" placeholder="email@example.com">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-document-text ion-positive placeholder-icon"></i>
+                <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
             </label>
         </div>
 

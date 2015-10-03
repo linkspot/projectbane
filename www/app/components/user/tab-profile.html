@@ -5,22 +5,25 @@
                 <button ng-click="showActionSheet()">Take A Profile Picture</button>
             </div>
             <img ng-show="user.card" id="user.card" ng-src="{{user.card}}" alt="Your Business Card" ng-click="showActionSheet()"></img>
-            <h2>{{ user.name }}</h2>
+            <!-- <h2>{{ user.name }}</h2> -->
         </div>
 
-        <ion-list type="list-inset">
+        <div class="list">
+            <label class="item item-input">
+                <i class="icon ion-person ion-positive placeholder-icon"></i>
+                <input type="text" ng-model="user.name" placeholder="Full Name"></input>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                <input type="phone" ng-model="user.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-email ion-positive placeholder-icon"></i>
+                <input type="email" ng-model="user.email" placeholder="email@example.com">
+            </label>
+        </div>
 
-            <ion-item class="item item-icon-left item-inset">
-                <i class="icon ion-ios-telephone ion-android-call ion-positive"></i>
-                <span class="item-note">714-732-9082</span>          
-            </ion-item>
-
-            <ion-item class="item item-icon-left item-inset">
-                <i class="icon ion-email ion-positive"></i>
-                <span class="item-note">{{user.email}}</span>          
-            </ion-item>
-
-        </ion-list>
+        <button ng-click="updateProfile()"> Update Profile </button>
 
     </ion-content>
 </ion-view>

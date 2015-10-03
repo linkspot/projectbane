@@ -3,14 +3,16 @@ angular.module('linkspot')
 .controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicActionSheet', '$ionicPlatform','$timeout', 'Users', 'Contacts',
 	function($scope, $state, $cordovaCamera, $ionicActionSheet, $ionicPlatform, $timeout, Users, Contacts) {
 
+	// $scope.user = "";
+
 	$scope.$on( "$ionicView.enter", function() {
         // $scope.profilePhoto = Camera.getProfile();
         $scope.user = Users.get();
-        // $scope.id = userInfo.id;
-        // $scope.fullName = userInfo.name;
-        // $scope.email = userInfo.email;
-        // $scope.profilePhoto = userInfo.card;
     });
+
+	$scope.updateProfile = function() {
+		Users.update($scope.user);
+	}
 
     // Triggered on a button click, or some other target
 	$scope.showActionSheet = function() {
@@ -69,9 +71,8 @@ angular.module('linkspot')
             .then(function(imageData) {
 				if(imageData != null) {
 					var imageSrc = "data:image/jpeg;base64," + imageData;
-					var user = Users.get();
-					user.card = imageSrc;
-					Users.update(user);
+					$scope.user.card = imageSrc;
+					Users.update($scope.user);
 				}
             }, 
             function(err) {
