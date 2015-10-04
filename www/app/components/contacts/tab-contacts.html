@@ -1,17 +1,29 @@
 <ion-view view-title="Contacts">
+    <!--
+    <ion-nav-buttons side="right">
+        <i class="button button-icon ion-android-search"></i>
+    </ion-nav-buttons>
+    -->
 
-  <ion-content>
+    <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper textbox-search">
+            <input type="search" placeholder="Search" ng-model="search">
+        </label>
+    </div>
 
-    <ion-item class="item-divider item-dark">
-        Tech
-    </ion-item>
-    <ion-list class="contacts-category-container">
-      <ion-item class="contacts-column" ng-repeat="contact in contacts" href="#/tab/contacts/{{contact.id}}">
-        <img class="contacts-column-img" ng-src="{{contact.card}}">
-        <h2>{{contact.name}}</h2>
-      </ion-item>
-    </ion-list>
+    <ion-content class="has-subheader">
+        <!-- 
+        <ion-item class="item-divider item-dark">
+            Tech
+        </ion-item>
+        -->
+        <ion-list class="contacts-category-container">
+            <ion-item class="contacts-column" ng-repeat="contact in contacts | filter:search | orderBy:'name'" href="#/tab/contacts/{{contact.id}}">
+                <img class="contacts-column-img" ng-src="{{contact.card}}">
+                <h2>{{contact.name}}</h2>
+            </ion-item>
+        </ion-list>
 
-  </ion-content>
+    </ion-content>
 
 </ion-view>

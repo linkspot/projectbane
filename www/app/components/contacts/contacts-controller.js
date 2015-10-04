@@ -9,6 +9,7 @@ angular.module('linkspot')
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  $scope.search = "";
   $scope.contacts = Contacts.all();
 
   $scope.addContact = function(contact) {
@@ -18,4 +19,5 @@ angular.module('linkspot')
   $scope.remove = function(contact) {
     Contacts.remove(contact);
   };
+
 }]);

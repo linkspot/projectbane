@@ -22,6 +22,14 @@
 	margin-top: -2px;
 }
 
+.platform-android .bar-subheader{
+	top: 93px !important;
+}
+
+.platform-android .has-subheader {
+	top: 137px;
+}
+
 .profilePhoto {
 	height: 100%;
 }
