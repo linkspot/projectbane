@@ -78,6 +78,11 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
       }
     }
   })
+  .state('intro', {
+    url: '/',
+    templateUrl: 'app/components/intro/intro.html',
+    controller: 'IntroCtrl'
+  })
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/components/user/signup.html',
@@ -90,7 +95,7 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('login');
+  $urlRouterProvider.otherwise('/');
 
 });
 
