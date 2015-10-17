@@ -1,8 +1,6 @@
 angular.module('linkspot')
 
 .factory('Contacts', ['$firebaseArray', 'Users', function($firebaseArray, Users) {
-    // Might use a resource here that returns a JSON array
-    // TODO: needs to somehow find the user id of the logged in user.
     var userId = Users.get().$id;
     var dataRef = new Firebase("https://linkspot.firebaseIO.com/users/" + userId + "/contacts");
     var contacts = $firebaseArray(dataRef);

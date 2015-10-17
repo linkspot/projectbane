@@ -1,29 +1,44 @@
-<ion-view view-title="Contacts">
+<ion-view view-title="{{title}}">
     <!--
     <ion-nav-buttons side="right">
         <i class="button button-icon ion-android-search"></i>
     </ion-nav-buttons>
     -->
+    <!-- TODO: add in controller for side menu toggle -->
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon" ng-click="toggleLeftSideMenu()"></button>
+    </ion-nav-buttons>
 
-    <div class="bar bar-subheader item-input-inset">
-        <label class="item-input-wrapper textbox-search">
-            <input type="search" placeholder="Search" ng-model="search">
-        </label>
-    </div>
+    <ion-side-menus>
 
-    <ion-content class="has-subheader">
-        <!-- 
-        <ion-item class="item-divider item-dark">
-            Tech
-        </ion-item>
-        -->
-        <ion-list class="contacts-category-container">
-            <ion-item class="contacts-column" ng-repeat="contact in contacts | filter:search | orderBy:'name'" href="#/tab/contacts/{{contact.id}}">
-                <img class="contacts-column-img" ng-src="{{contact.card}}">
-                <h2>{{contact.name}}</h2>
-            </ion-item>
-        </ion-list>
+        <ion-side-menu side="left">
+            <ion-content class="has-header">
+                <ion-list>
+                    <ion-item nav-clear menu-close ng-repeat="tag in tags | orderBy:tag.$value" ng-click="filterBy(tag.$value)">
+                        {{tag.$value}}
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
 
-    </ion-content>
+        <ion-side-menu-content>
+            <div class="bar bar-subheader item-input-inset">
+                <label class="item-input-wrapper textbox-search">
+                    <input type="search" placeholder="Search" ng-model="search">
+                </label>
+            </div>
+
+            <ion-content class="has-subheader">
+                <ion-list class="contacts-category-container">
+                    <!-- Order by Name and Filter by Tag-->
+                    <ion-item class="contacts-column" ng-repeat="contact in contacts | filter: tag | filter:search | orderBy:'name'" href="#/tab/contacts/{{contact.id}}">
+                        <img class="contacts-column-img" ng-src="{{contact.card}}">
+                        <h2>{{contact.name}}</h2>
+                    </ion-item>
+                </ion-list>
+
+            </ion-content>
+        </ion-side-menu-content>
+    </ion-side-menus>
 
 </ion-view>
