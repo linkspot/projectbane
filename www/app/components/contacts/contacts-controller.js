@@ -65,10 +65,10 @@ angular.module('linkspot')
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    $scope.toggleRightSideMenu = function() {
-        $scope.updateRightMenuTitle();
-        $ionicSideMenuDelegate.toggleRight();
-    };
+    // $scope.toggleRightSideMenu = function() {
+    //     $scope.updateRightMenuTitle();
+    //     $ionicSideMenuDelegate.toggleRight();
+    // };
 
     $scope.updateLeftMenuTitle = function() {
         if($ionicSideMenuDelegate.isOpenLeft())
@@ -77,11 +77,11 @@ angular.module('linkspot')
             $scope.title = "Filter by Tag";
     }
 
-    $scope.updateRightMenuTitle = function() {
-        if($ionicSideMenuDelegate.isOpenRight())
-            $scope.title = "Contacts";
-        else
-            $scope.title = "Search by Field";
-    }
+    // $scope.updateRightMenuTitle = function() {
+    //     if($ionicSideMenuDelegate.isOpenRight())
+    //         $scope.title = "Contacts";
+    //     else
+    //         $scope.title = "Search by Field";
+    // }
 
 }]);
