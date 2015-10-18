@@ -6,7 +6,11 @@
     -->
     <!-- TODO: add in controller for side menu toggle -->
     <ion-nav-buttons side="left">
-        <button menu-toggle="left"class="button button-icon icon ion-navicon" ng-click="toggleLeftSideMenu()"></button>
+        <button menu-toggle="left"class="button button-icon icon ion-ios-pricetag" ng-click="toggleLeftSideMenu()"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right"class="button button-icon icon ion-android-search" ng-click="toggleRightSideMenu()"></button>
     </ion-nav-buttons>
 
     <ion-side-menus>
@@ -14,9 +18,16 @@
         <ion-side-menu side="left">
             <ion-content class="has-header">
                 <ion-list>
-                    <ion-item nav-clear menu-close ng-repeat="tag in tags | orderBy:tag.$value" ng-click="filterBy(tag.$value)">
-                        {{tag.$value}}
-                    </ion-item>
+                    <label class="item item-radio" menu-close ng-click="filterBy('')">
+                        <input type="radio" name="filterTags" ng-checked="true">
+                        <div class="item-content"> All </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                    <label class="item item-radio" menu-close ng-repeat="tag in tags | orderBy:'$value'" ng-click="filterBy(tag.$value)">
+                        <input type="radio" name="filterTags">
+                        <div class="item-content"> {{tag.$value | capitalize}} </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
                 </ion-list>
             </ion-content>
         </ion-side-menu>
@@ -24,21 +35,41 @@
         <ion-side-menu-content>
             <div class="bar bar-subheader item-input-inset">
                 <label class="item-input-wrapper textbox-search">
-                    <input type="search" placeholder="Search" ng-model="search">
+                    <input ng-show="checkField('name')" type="search" placeholder="Search by Name" ng-model="search.name">
+                    <input ng-show="checkField('phone')" type="search" placeholder="Search by Phone" ng-model="search.phone">
+                    <input ng-show="checkField('email')" type="search" placeholder="Search by Email" ng-model="search.email">
                 </label>
             </div>
 
             <ion-content class="has-subheader">
                 <ion-list class="contacts-category-container">
-                    <!-- Order by Name and Filter by Tag-->
-                    <ion-item class="contacts-column" ng-repeat="contact in contacts | filter: tag | filter:search | orderBy:'name'" href="#/tab/contacts/{{contact.id}}">
+                    <!-- Order by Field and Filter by Tag-->
+                    <ion-item class="contacts-column" ng-repeat="contact in contacts | filter:tag | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}">
                         <img class="contacts-column-img" ng-src="{{contact.card}}">
                         <h2>{{contact.name}}</h2>
+                        <!--
+                        <h2 ng-show="checkField('name')">{{contact.name}}</h2>
+                        <h2 ng-show="checkField('phone')">{{contact.phone}}</h2>
+                        <h2 ng-show="checkField('email')">{{contact.email}}</h2> 
+                        -->
                     </ion-item>
                 </ion-list>
 
             </ion-content>
         </ion-side-menu-content>
+
+        <ion-side-menu side="right">
+            <ion-content class="has-header">
+                <ion-list>
+                    <label class="item item-radio" menu-close ng-repeat="field in fields" ng-click="searchBy(field)">
+                        <input type="radio" name="searchFields" ng-checked="$index==0?true:false">
+                        <div class="item-content"> {{field | capitalize}} </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+
     </ion-side-menus>
 
 </ion-view>

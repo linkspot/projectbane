@@ -9,10 +9,14 @@ angular.module('linkspot')
 //$scope.$on('$ionicView.enter', function(e) {
 //});
     $scope.title = "Contacts";
-    $scope.tag = "";
-    $scope.search = "";
     $scope.contacts = Contacts.all();
+
+    $scope.tag = "";
     $scope.tags = Tags.all();
+
+    $scope.search = "";
+    $scope.field = "name";
+    $scope.fields = ["name", "phone", "email"];
 
     // Contacts
     $scope.addContact = function(contact) {
@@ -24,17 +28,43 @@ angular.module('linkspot')
     };
 
     // Filters
+    $scope.checkField = function(field) {
+        return $scope.field == field ? true : false;
+    }
+
     $scope.filterBy = function(filter) {
-        console.log("Filter: " + filter);
         $scope.tag = filter;
+        $scope.updateLeftMenuTitle();
     };
 
-    $scope.toggleLeftSideMenu = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-        if($scope.title == "Contacts")
-            $scope.title = "Filter by Tag";
-        else
-            $scope.title = "Contacts";
+    $scope.searchBy = function(field) {
+        $scope.field = field;
+        $scope.updateRightMenuTitle();
     };
+
+    // Side Menus
+    $scope.toggleLeftSideMenu = function() {
+        $scope.updateLeftMenuTitle();
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $scope.toggleRightSideMenu = function() {
+        $scope.updateRightMenuTitle();
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
+    $scope.updateLeftMenuTitle = function() {
+        if($ionicSideMenuDelegate.isOpenLeft())
+            $scope.title = "Contacts";
+        else
+            $scope.title = "Filter by Tag";
+    }
+
+    $scope.updateRightMenuTitle = function() {
+        if($ionicSideMenuDelegate.isOpenRight())
+            $scope.title = "Contacts";
+        else
+            $scope.title = "Search by Field";
+    }
 
 }]);

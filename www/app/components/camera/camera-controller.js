@@ -1,24 +1,15 @@
 angular.module('linkspot')
 
-.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', '$state', 
-            function($scope, $cordovaCamera, $ionicPlatform, Contacts, $state) {
+.controller('CameraCtrl', ['$scope', '$cordovaCamera', '$ionicPlatform', 'Contacts', 'Camera', '$state', 
+            function($scope, $cordovaCamera, $ionicPlatform, Contacts, Camera, $state) {
 
     $ionicPlatform.ready(function() {
 
         $scope.takePicture = function() {
-            var options = {
-                quality: 50,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 350,
-                targetHeight: 200,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false,
-                correctOrientation: true
-            };
+            Camera.showActionSheet($scope.setContactPicture);
+        }
 
+        $scope.setContactPicture = function(options) {
             $cordovaCamera.getPicture(options)
             .then(function(imageData) {
               if(imageData != null) {

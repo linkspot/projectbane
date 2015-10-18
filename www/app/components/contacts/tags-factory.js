@@ -14,10 +14,12 @@ angular.module('linkspot')
         },
         update: function(tags) {
             contacts.$save(tags);
-        },
-        remove: function(tag) {
-            contacts.$remove(tag);
         }
+        // Shouldn't use $remove() - refer to link for more information.
+        // https://www.firebase.com/docs/web/guide/understanding-data.html#section-arrays-in-firebase
+        // remove: function(tag) {
+        //     contacts.$remove(tag);
+        // }
     };
 
 }]);
