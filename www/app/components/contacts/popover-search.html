@@ -1,0 +1,43 @@
+<style>
+	/* Fit Popover to Size */
+	ion-popover-view.fit {
+	    height: auto !important;
+	}
+	ion-popover-view.fit ion-header-bar {
+	    position: relative;
+	}
+	ion-popover-view.fit ion-content {
+	    top: 0;
+	    position: relative;
+	}
+	.list-item-fit {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.rounded-footer {
+		height: 5px;
+	    position: relative;
+	    border-radius: 10px;
+	}
+</style>
+
+<ion-popover-view class="fit">
+
+    <ion-header-bar>
+    	<h1 class="title">Search By</h1>
+	</ion-header-bar>
+
+    <ion-content scroll="false">
+
+        <ion-list>
+            <label class="item item-radio list-item-fit" menu-close ng-repeat="field in fields" ng-click="searchBy(field)">
+                <input type="radio" name="searchFields" ng-checked="$index==0?true:false">
+                <div class="item-content"> {{field | capitalize}} </div>
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+        </ion-list>
+    </ion-content>
+
+    <div class="rounded-footer"></div>
+
+</ion-popover-view>

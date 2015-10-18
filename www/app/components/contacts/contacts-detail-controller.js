@@ -12,6 +12,11 @@ angular.module('linkspot')
         $scope.contact = Contacts.get($stateParams.contactId);
     });
     
+    // Modify Data
+    $scope.toggleEditMode = function() {
+        console.log("edit mode");
+    }
+
   	$scope.updateContact = function() {
       console.log($scope.contact);
   		Contacts.update($scope.contact);
@@ -42,7 +47,6 @@ angular.module('linkspot')
             $state.go($state.current, {}, {reload: true});
         });
     }
-
 
     // Back Button.
     var forceBackButton = function() {

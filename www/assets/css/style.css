@@ -1,5 +1,4 @@
-/* Empty. Add your own CSS if you like */
-
+/* Contacts: Display */
 .contacts-column {
   width: 32%;
   display: inline-block;
@@ -22,6 +21,7 @@
 	margin-top: -2px;
 }
 
+/* Contacts: Search Bar*/
 .platform-android .bar-subheader{
 	top: 93px !important;
 }
@@ -30,6 +30,7 @@
 	top: 137px;
 }
 
+/* Profile */
 .profilePhoto {
 	height: 100%;
 }

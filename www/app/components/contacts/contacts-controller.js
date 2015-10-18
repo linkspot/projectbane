@@ -1,6 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', 'Contacts', 'Tags', function($scope, $state, $ionicSideMenuDelegate, Contacts, Tags) {
+.controller('ContactsCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicPopover', 'Contacts', 'Tags', 
+            function($scope, $state, $ionicSideMenuDelegate, $ionicPopover, Contacts, Tags) {
 // With the new view caching in Ionic, Controllers are only called
 // when they are recreated or on app start, instead of every page change.
 // To listen for when this page is active (for example, to refresh data),
@@ -39,7 +40,23 @@ angular.module('linkspot')
 
     $scope.searchBy = function(field) {
         $scope.field = field;
-        $scope.updateRightMenuTitle();
+        $scope.closePopover();
+        // $scope.updateRightMenuTitle();
+    };
+
+    // Popovers
+    $ionicPopover.fromTemplateUrl('app/components/contacts/popover-search.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+    };
+
+    $scope.closePopover = function() {
+        $scope.popover.hide();
     };
 
     // Side Menus

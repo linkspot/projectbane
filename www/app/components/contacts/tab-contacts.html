@@ -6,11 +6,11 @@
     -->
     <!-- TODO: add in controller for side menu toggle -->
     <ion-nav-buttons side="left">
-        <button menu-toggle="left"class="button button-icon icon ion-ios-pricetag" ng-click="toggleLeftSideMenu()"></button>
+        <button menu-toggle="left" class="button button-icon icon ion-ios-pricetag" ng-click="toggleLeftSideMenu()"></button>
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-        <button menu-toggle="right"class="button button-icon icon ion-android-search" ng-click="toggleRightSideMenu()"></button>
+        <button class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
 
     <ion-side-menus>
@@ -35,10 +35,12 @@
         <ion-side-menu-content>
             <div class="bar bar-subheader item-input-inset">
                 <label class="item-input-wrapper textbox-search">
+                    <i class="icon ion-search placeholder-icon"></i>
                     <input ng-show="checkField('name')" type="search" placeholder="Search by Name" ng-model="search.name">
                     <input ng-show="checkField('phone')" type="search" placeholder="Search by Phone" ng-model="search.phone">
                     <input ng-show="checkField('email')" type="search" placeholder="Search by Email" ng-model="search.email">
                 </label>
+                <button class="button button-icon icon ion-android-search" ng-click="openPopover($event)"></button>
             </div>
 
             <ion-content class="has-subheader">
