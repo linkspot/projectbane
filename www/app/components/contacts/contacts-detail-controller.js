@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$cordovaCamera', 'Contacts', 'Camera', 
-            function($scope, $state, $stateParams, $ionicHistory, $cordovaCamera, Contacts, Camera) {
+.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicSideMenuDelegate', '$cordovaCamera', 'Contacts', 'Camera', 'Tags', 
+            function($scope, $state, $stateParams, $ionicHistory, $ionicSideMenuDelegate, $cordovaCamera, Contacts, Camera, Tags) {
     
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
@@ -10,14 +10,32 @@ angular.module('linkspot')
 
     $scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
+        $scope.title = $scope.contact.name;
+
+        // $scope.selectedTags = $scope.contact.tags;
+        // $scope.tags = Tags.all();
     });
     
-    // Modify Data
-    $scope.toggleEditMode = function() {
-        console.log("edit mode");
+    // Modify Tags
+    $scope.toggleRightSideMenu = function() {
+        $scope.updateRightMenuTitle();
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
+    $scope.updateRightMenuTitle = function() {
+        if($ionicSideMenuDelegate.isOpenRight())
+            $scope.title = $scope.contact.name;
+        else
+            $scope.title = "Select Tags";
+    };
+
+    $scope.isSelected = function(tag) {
+        // console.log(tag);
+        return true;
     }
 
-  	$scope.updateContact = function() {
+  	// Contact
+    $scope.updateContact = function() {
       console.log($scope.contact);
   		Contacts.update($scope.contact);
   	}

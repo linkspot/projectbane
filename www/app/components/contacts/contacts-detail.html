@@ -4,38 +4,60 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{contact.name}}">
-    <ion-nav-buttons side="right">
-        <button menu-toggle="right"class="button button-icon icon ion-edit" ng-click="toggleEditMode()"></button>
-    </ion-nav-buttons>
+<ion-view view-title="{{title}}">
 
-    <ion-content>
-        <div>
-            <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
-        </div>
+    <!-- <ion-side-menus> -->
 
-        <div class="list">
-            <label class="item item-input">
-                <i class="icon ion-person ion-positive placeholder-icon"></i>
-                <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
-                <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-email ion-positive placeholder-icon"></i>
-                <input type="email" ng-model="contact.email" placeholder="email@example.com">
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-document-text ion-positive placeholder-icon"></i>
-                <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
-            </label>
-        </div>
+        <!-- <ion-side-menu-content> -->
+            <ion-content>
+                <div>
+                    <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
+                </div>
 
-        <button ng-click="updateContact()"> Update Contact </button>
-        <button ng-click="removeContact()"> Delete Contact </button>
+                <div class="list">
+                    <label class="item item-input">
+                        <i class="icon ion-person ion-positive placeholder-icon"></i>
+                        <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                        <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-email ion-positive placeholder-icon"></i>
+                        <input type="email" ng-model="contact.email" placeholder="email@example.com">
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-document-text ion-positive placeholder-icon"></i>
+                        <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
+                    </label>
+<!--                     <label class="item" ng-click="toggleRightSideMenu()">
+                        <i class="icon ion-ios-pricetag ion-positive placeholder-icon"></i>
+                        <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">{{selectedTag}}</span>
+                    </label> -->
+                </div>
 
-    </ion-content>
+                <button ng-click="updateContact()"> Update Contact </button>
+                <button ng-click="removeContact()"> Delete Contact </button>
+
+            </ion-content>
+        <!-- </ion-side-menu-content> -->
+
+        <!-- <ion-side-menu side="right"> -->
+            <!-- <ion-content class="has-header"> -->
+<!--                 <ul class="list">
+                    <li class="item item-checkbox" ng-repeat="tag in tags | orderBy:'$value'">
+                        <label class="checkbox"> 
+                            <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
+                        </label>
+                        {{tag.$value | capitalize}} 
+                    </li>
+                </ul> -->
+            <!-- </ion-content> -->
+        <!-- </ion-side-menu> -->
+
+    <!-- </ion-side-menus> -->
+
+
 
 </ion-view>
