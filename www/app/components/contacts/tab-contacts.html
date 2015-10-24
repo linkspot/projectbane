@@ -15,14 +15,14 @@
         <ion-side-menu side="left">
             <ion-content class="has-header">
                 <ion-list>
-                    <label class="item item-radio" menu-close ng-click="filterBy('')">
-                        <input type="radio" name="filterTags" ng-checked="true">
-                        <div class="item-content"> All </div>
-                        <i class="radio-icon ion-checkmark"></i>
+                    <!-- TODO: think about what type of functionality -->
+                    <label class="item" ng-click="clearSelectedTags()">
+                        <!-- <input type="checkbox" name="selectTags" ng-checked="false"> -->
+                        <div class="item-content"> Clear All Filters </div>
                     </label>
-                    <label class="item item-radio" menu-close ng-repeat="tag in tags | orderBy:'$value'" ng-click="filterBy(tag.$value)">
-                        <input type="radio" name="filterTags">
-                        <div class="item-content"> {{tag.$value | capitalize}} </div>
+                    <label class="item item-radio" ng-repeat="tag in tags | orderBy:'tag'" ng-click="toggleSelectTag(tag)">
+                        <input type="checkbox" name="selectTags" ng-checked="isSelected(tag)">
+                        <div class="item-content"> {{tag | capitalize}} </div>
                         <i class="radio-icon ion-checkmark"></i>
                     </label>
                 </ion-list>
@@ -43,7 +43,7 @@
             <ion-content class="has-subheader">
                 <ion-list class="contacts-category-container">
                     <!-- Order by Field and Filter by Tag-->
-                    <ion-item class="contacts-column" ng-repeat="contact in contacts | filter:tag | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}">
+                    <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}">
                         <img class="contacts-column-img" ng-src="{{contact.card}}">
                         <h2>{{contact.name}}</h2>
                         <!--

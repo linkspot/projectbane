@@ -59,7 +59,7 @@
                     </li>
                 </ul> -->
                 <ion-list>
-                    <label class="item item-icon-left item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="searchBy(field)">
+                    <label class="item item-icon-left item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="toggleSelectTag(tag.$value)">
                         <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
                         <div class="item-content"> {{tag.$value | capitalize}} </div>
                         <i class="radio-icon ion-checkmark"></i>

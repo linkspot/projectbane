@@ -12,8 +12,8 @@ angular.module('linkspot')
     $scope.title = "Contacts";
     $scope.contacts = Contacts.all();
 
-    $scope.tag = "";
-    $scope.tags = Tags.all();
+    $scope.tags = Tags.allTrimmed();
+    $scope.selectedTags = [];
 
     $scope.search = "";
     $scope.field = "name";
@@ -33,10 +33,22 @@ angular.module('linkspot')
         return $scope.field == field ? true : false;
     }
 
-    $scope.filterBy = function(filter) {
-        $scope.tag = filter;
-        $scope.updateLeftMenuTitle();
-    };
+    $scope.clearSelectedTags = function() {
+        $scope.selectedTags = [];
+    }
+
+    $scope.isSelected = function(tag) {
+        return _.contains($scope.selectedTags, tag);
+    }
+
+    $scope.toggleSelectTag = function(tag) {
+        var index = _.indexOf($scope.selectedTags, tag);
+        if (index != -1)
+            $scope.selectedTags.splice(index, 1);
+        else
+            $scope.selectedTags.push(tag);
+        // console.log($scope.selectedTags);
+    }
 
     $scope.searchBy = function(field) {
         $scope.field = field;
@@ -74,7 +86,7 @@ angular.module('linkspot')
         if($ionicSideMenuDelegate.isOpenLeft())
             $scope.title = "Contacts";
         else
-            $scope.title = "Filter by Tag";
+            $scope.title = "Select Tags";
     }
 
     // $scope.updateRightMenuTitle = function() {

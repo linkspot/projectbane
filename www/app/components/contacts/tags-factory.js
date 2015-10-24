@@ -9,6 +9,11 @@ angular.module('linkspot')
         all: function() {
             return tags;
         },
+        allTrimmed: function() {
+            var trimmedTags = [];
+            dataRef.on('value', function(snap) { trimmedTags = snap.val(); });
+            return trimmedTags;
+        },
         add: function(tag) {
             tags.$add(tag);
         },

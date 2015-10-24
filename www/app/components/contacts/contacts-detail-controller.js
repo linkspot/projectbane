@@ -13,6 +13,8 @@ angular.module('linkspot')
         $scope.title = $scope.contact.name;
 
         $scope.selectedTags = $scope.contact.tags;
+        if ($scope.selectedTags == null)
+            $scope.selectedTags = [];
         $scope.tags = Tags.all();
     });
     
@@ -30,7 +32,16 @@ angular.module('linkspot')
     };
 
     $scope.isSelected = function(tag) {
-        return true;
+        return _.contains($scope.selectedTags, tag);
+    }
+
+    $scope.toggleSelectTag = function(tag) {
+        var index = _.indexOf($scope.selectedTags, tag);
+        if (index != -1)
+            $scope.selectedTags.splice(index, 1);
+        else
+            $scope.selectedTags.push(tag);
+        // console.log($scope.selectedTags);
     }
 
   	// Contact
