@@ -3,17 +3,17 @@ angular.module('linkspot')
 .controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicSideMenuDelegate', '$cordovaCamera', 'Contacts', 'Camera', 'Tags', 
             function($scope, $state, $stateParams, $ionicHistory, $ionicSideMenuDelegate, $cordovaCamera, Contacts, Camera, Tags) {
     
-    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-        viewData.enableBack = true;
-        forceBackButton();
-    });
+    // $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    //     viewData.enableBack = true;
+    //     forceBackButton();
+    // });
 
     $scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
         $scope.title = $scope.contact.name;
 
-        // $scope.selectedTags = $scope.contact.tags;
-        // $scope.tags = Tags.all();
+        $scope.selectedTags = $scope.contact.tags;
+        $scope.tags = Tags.all();
     });
     
     // Modify Tags
@@ -30,7 +30,6 @@ angular.module('linkspot')
     };
 
     $scope.isSelected = function(tag) {
-        // console.log(tag);
         return true;
     }
 
@@ -67,13 +66,16 @@ angular.module('linkspot')
     }
 
     // Back Button.
-    var forceBackButton = function() {
-        var history = $ionicHistory.backView();
-        // console.log(history);
-        history.url = "/tab/contacts";
-        history.stateId = "tab.contacts";
-        history.stateName = "tab.contacts";
-        history.title = "Contacts";
-    }
+    // var forceBackButton = function() {
+    //     console.log($ionicHistory.currentView());
+    //     var history = $ionicHistory.backView();
+        
+    //     history.url = "/tab/contacts";
+    //     history.stateId = "tab.contacts";
+    //     history.stateName = "tab.contacts";
+    //     history.title = "Contacts";
+
+    //     console.log(history);
+    // }
 
 }]);

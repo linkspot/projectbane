@@ -38,3 +38,13 @@
 .slider {
   height: 100%;
 }
+
+/* Side Menu: Left Checkmarks*/
+.item-icon-left .item-content {
+  padding-left:3em;  
+}
+
+.item-icon-left i {
+  left:0;
+  right: auto;
+}
