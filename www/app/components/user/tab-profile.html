@@ -1,29 +1,50 @@
 <ion-view view-title="Profile">
-    <ion-content>
-        <div class="item item-body">
-            <div ng-hide="user.card">
-                <button ng-click="showActionSheet()">Take A Profile Picture</button>
-            </div>
-            <img ng-show="user.card" id="user.card" ng-src="{{user.card}}" alt="Your Business Card" ng-click="showProfileActionSheet()"></img>
-            <!-- <h2>{{ user.name }}</h2> -->
-        </div>
 
-        <div class="list">
-            <label class="item item-input">
-                <i class="icon ion-person ion-positive placeholder-icon"></i>
-                <input type="text" ng-model="user.name" placeholder="Full Name"></input>
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
-                <input type="phone" ng-model="user.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-email ion-positive placeholder-icon"></i>
-                <input type="email" ng-model="user.email" placeholder="email@example.com">
-            </label>
-        </div>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-navicon" ng-click="toggleRightSideMenu()"></button>
+    </ion-nav-buttons>
 
-        <button ng-click="updateProfile()"> Update Profile </button>
+    <ion-side-menus>
+    
+        <ion-side-menu side="right">
+            <ion-content class="has-header">
+                <ion-list>
+                <a class="item item-icon-left" ng-click="logout()">
+                    <i class="icon ion-power"></i>Sign Out
+                  </a>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
 
-    </ion-content>
+        <ion-side-menu-content>
+            <ion-content>
+                <div class="item item-body">
+                    <div ng-hide="user.card">
+                        <button ng-click="showActionSheet()">Take A Profile Picture</button>
+                    </div>
+                    <img ng-show="user.card" id="user.card" ng-src="{{user.card}}" alt="Your Business Card" ng-click="showProfileActionSheet()"></img>
+                    <!-- <h2>{{ user.name }}</h2> -->
+                </div>
+
+                <div class="list">
+                    <label class="item item-input">
+                        <i class="icon ion-person ion-positive placeholder-icon"></i>
+                        <input type="text" ng-model="user.name" placeholder="Full Name"></input>
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                        <input type="phone" ng-model="user.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+                    </label>
+                    <label class="item item-input">
+                        <i class="icon ion-email ion-positive placeholder-icon"></i>
+                        <input type="email" ng-model="user.email" placeholder="email@example.com">
+                    </label>
+                </div>
+
+                <button ng-click="updateProfile()"> Update Profile </button>
+
+            </ion-content>
+        </ion-side-menu-content>
+
+    </ion-side-menus>
 </ion-view>

@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform','$timeout', 'Users', 'Contacts', 'Camera',
-	function($scope, $state, $cordovaCamera, $ionicPlatform, $timeout, Users, Contacts, Camera) {
+.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform','$timeout', 'Users', 'Contacts', 'Camera', '$ionicSideMenuDelegate',
+	function($scope, $state, $cordovaCamera, $ionicPlatform, $timeout, Users, Contacts, Camera, $ionicSideMenuDelegate) {
 
 	// $scope.user = "";
 
@@ -34,6 +34,22 @@ angular.module('linkspot')
         	$state.go($state.current, {}, {reload: true});
         });
     }
+
+    $scope.toggleRightSideMenu = function() {
+        $scope.updateRightMenuTitle();
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
+    $scope.updateRightMenuTitle = function() {
+        if($ionicSideMenuDelegate.isOpenRight())
+            $scope.title = "Contacts";
+        else
+            $scope.title = "Menu";
+    };
+
+    $scope.logout = function() {
+        $state.go('login');
+    };
 
 	
 }]);
