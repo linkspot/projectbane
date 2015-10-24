@@ -3,6 +3,8 @@ angular.module('linkspot')
 
 		$scope.$on( "$ionicView.enter", function() {
 			// When user gets to login page, log the user out.
+			document.getElementById('loginUsername').value = "";
+			document.getElementById('loginPassword').value = "";
 	        var dataRef = Users.getFirebaseRef();
 	        dataRef.unauth();
     	});

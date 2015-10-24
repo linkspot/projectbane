@@ -4,10 +4,10 @@
       <form name="signupForm" ng-submit="logIn(loginForm)">
         <div class="list list-inset">
             <label class="item item-input">
-                <input type="text" placeholder="Email" ng-model="loginForm.email">
+                <input type="text" placeholder="Email" id="loginUsername" ng-model="loginForm.email">
             </label>
             <label class="item item-input">
-                <input type="password" placeholder="Password" ng-model="loginForm.password">
+                <input type="password" placeholder="Password" id="loginPassword" ng-model="loginForm.password">
             </label>
             <button class="button button-outline button-block button-positive">
                 Log In

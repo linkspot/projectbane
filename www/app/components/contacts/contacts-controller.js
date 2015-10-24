@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicPopover', 'Contacts', 'Tags', 
-            function($scope, $state, $ionicSideMenuDelegate, $ionicPopover, Contacts, Tags) {
+.controller('ContactsCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicPopover', 'Contacts', 'Tags', 'Users',
+            function($scope, $state, $ionicSideMenuDelegate, $ionicPopover, Contacts, Tags, Users) {
 // With the new view caching in Ionic, Controllers are only called
 // when they are recreated or on app start, instead of every page change.
 // To listen for when this page is active (for example, to refresh data),
@@ -65,23 +65,27 @@ angular.module('linkspot')
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    // $scope.toggleRightSideMenu = function() {
-    //     $scope.updateRightMenuTitle();
-    //     $ionicSideMenuDelegate.toggleRight();
-    // };
+    $scope.toggleRightSideMenu = function() {
+        $scope.updateRightMenuTitle();
+        $ionicSideMenuDelegate.toggleRight();
+    };
 
     $scope.updateLeftMenuTitle = function() {
         if($ionicSideMenuDelegate.isOpenLeft())
             $scope.title = "Contacts";
         else
             $scope.title = "Filter by Tag";
-    }
+    };
 
-    // $scope.updateRightMenuTitle = function() {
-    //     if($ionicSideMenuDelegate.isOpenRight())
-    //         $scope.title = "Contacts";
-    //     else
-    //         $scope.title = "Search by Field";
-    // }
+    $scope.updateRightMenuTitle = function() {
+        if($ionicSideMenuDelegate.isOpenRight())
+            $scope.title = "Contacts";
+        else
+            $scope.title = "Menu";
+    };
+
+    $scope.logout = function() {
+        $state.go('login');
+    };
 
 }]);
