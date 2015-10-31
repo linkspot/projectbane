@@ -1,3 +1,21 @@
+.center {
+    position: relative;
+    margin: 0;
+    text-align: center;
+}
+
+.vert-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grad {
+    background: linear-gradient(#aaf6ad, #61da66);
+    height: 100%;
+}
+
 /* Contacts: Display */
 .contacts-column {
     width: 32%;

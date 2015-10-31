@@ -19,6 +19,18 @@ angular.module('linkspot')
     $scope.field = "name";
     $scope.fields = ["name", "phone", "email"];
 
+    $scope.$watch(
+        function () {
+            return $ionicSideMenuDelegate.isOpenLeft();
+        },
+        function (isOpen) {
+            if (isOpen)
+                $scope.title = "Select Tags";
+            else
+                $scope.title = "Contacts";           
+        }
+    );
+
     // Contacts
     $scope.addContact = function(contact) {
         Contacts.add(contact);
@@ -100,27 +112,11 @@ angular.module('linkspot')
 
     // Side Menus
     $scope.toggleLeftSideMenu = function() {
-        $scope.updateLeftMenuTitle();
         $ionicSideMenuDelegate.toggleLeft();
     };
 
     $scope.toggleRightSideMenu = function() {
-        $scope.updateRightMenuTitle();
         $ionicSideMenuDelegate.toggleRight();
-    };
-
-    $scope.updateLeftMenuTitle = function() {
-        if($ionicSideMenuDelegate.isOpenLeft())
-            $scope.title = "Contacts";
-        else
-            $scope.title = "Select Tags";
-    };
-
-    $scope.updateRightMenuTitle = function() {
-        if($ionicSideMenuDelegate.isOpenRight())
-            $scope.title = "Contacts";
-        else
-            $scope.title = "Menu";
     };
 
     $scope.logout = function() {
