@@ -14,25 +14,27 @@
     <ion-side-menus>
 
         <ion-side-menu-content>
-            <ion-content>
+            <ion-content class="contact-detail-container">
                 <div>
                     <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
                 </div>
 
                 <div class="list">
-                    <label class="item item-input">
+                    <label class="item item-input item-icon-left">
                         <i class="icon ion-person ion-positive placeholder-icon"></i>
                         <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
                     </label>
-                    <label class="item item-input">
+                    <label class="item item-input item-icon-left item-icon-right">
                         <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
                         <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+                        <a class="button ion-ios-telephone-outline" ng-href="tel: {{contact.phone}}"></a>
                     </label>
-                    <label class="item item-input">
+                    <label class="item item-input item-icon-left item-icon-right">
                         <i class="icon ion-email ion-positive placeholder-icon"></i>
                         <input type="email" ng-model="contact.email" placeholder="email@example.com">
+                        <a class="button ion-ios-email-outline" ng-href="mailto: {{contact.email}}"></a>   
                     </label>
-                    <label class="item item-input">
+                    <label class="item item-input item-icon-left">
                         <i class="icon ion-document-text ion-positive placeholder-icon"></i>
                         <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
                     </label>

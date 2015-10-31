@@ -48,3 +48,15 @@
   left:0;
   right: auto;
 }
+
+.contact-detail-container input {
+  padding-left: 35px;
+  padding-right: 45px;
+}
+
+.contact-detail-container a {
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-size: 35px;
+}
