@@ -7,28 +7,34 @@ angular.module('linkspot')
     //     viewData.enableBack = true;
     //     forceBackButton();
     // });
+    $scope.name = "Temp";
 
     $scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
-        $scope.title = $scope.contact.name;
+        $scope.name = $scope.contact.name;
+        $scope.title = $scope.name;
 
         $scope.selectedTags = $scope.contact.tags;
         if ($scope.selectedTags == null)
             $scope.selectedTags = [];
         $scope.tags = Tags.all();
     });
+
+    $scope.$watch(
+        function () {
+            return $ionicSideMenuDelegate.isOpenRight();
+        },
+        function (isOpen) {
+            if (isOpen)
+                $scope.title = "Select Tags";
+            else
+                $scope.title = $scope.name;           
+        }
+    );
     
     // Modify Tags
     $scope.toggleRightSideMenu = function() {
-        $scope.updateRightMenuTitle();
         $ionicSideMenuDelegate.toggleRight();
-    };
-
-    $scope.updateRightMenuTitle = function() {
-        if($ionicSideMenuDelegate.isOpenRight())
-            $scope.title = $scope.contact.name;
-        else
-            $scope.title = "Select Tags";
     };
 
     $scope.isSelected = function(tag) {
@@ -41,7 +47,6 @@ angular.module('linkspot')
             $scope.selectedTags.splice(index, 1);
         else
             $scope.selectedTags.push(tag);
-        // console.log($scope.selectedTags);
     }
 
   	// Contact

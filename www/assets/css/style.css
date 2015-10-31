@@ -1,10 +1,10 @@
 /* Contacts: Display */
 .contacts-column {
-  width: 32%;
-  display: inline-block;
-  border: none;
-  margin: 1px;
-  text-align: center
+    width: 32%;
+    display: inline-block;
+    border: none;
+    margin: 1px;
+    text-align: center
 }
 
 .contacts-column-img {
@@ -30,21 +30,32 @@
 	top: 137px;
 }
 
+/* Contacts: Bottom Button */
+.bottom-button {
+    position: fixed;
+    bottom: 2.44em;
+    border-radius: 0px;
+}
+
+.platform-android .bottom-button {
+    bottom: -0.6em;
+}
+
 /* Profile */
 .profilePhoto {
 	height: 100%;
 }
 
 .slider {
-  height: 100%;
+    height: 100%;
 }
 
 /* Side Menu: Left Checkmarks*/
 .item-icon-left .item-content {
-  padding-left:3em;  
+    padding-left:3em;  
 }
 
 .item-icon-left i {
-  left:0;
-  right: auto;
+    left:0;
+    right: auto;
 }

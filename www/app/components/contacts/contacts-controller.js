@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicPopover', 'Contacts', 'Tags', 'Users',
-            function($scope, $state, $ionicSideMenuDelegate, $ionicPopover, Contacts, Tags, Users) {
+.controller('ContactsCtrl', ['$scope', '$state', '$cordovaCamera','$ionicSideMenuDelegate', '$ionicPopover', 'Camera', 'Contacts', 'Tags', 'Users',
+            function($scope, $state, $cordovaCamera, $ionicSideMenuDelegate, $ionicPopover, Camera, Contacts, Tags, Users) {
 // With the new view caching in Ionic, Controllers are only called
 // when they are recreated or on app start, instead of every page change.
 // To listen for when this page is active (for example, to refresh data),
@@ -27,6 +27,33 @@ angular.module('linkspot')
     $scope.remove = function(contact) {
         Contacts.remove(contact);
     };
+
+    // Camera
+    $scope.showContactActionSheet = function() {
+        Camera.showActionSheet($scope.setContactPicture);
+    }
+
+    $scope.setContactPicture = function(options) {
+        $cordovaCamera.getPicture(options)
+        .then(function(imageData) {
+          if(imageData != null) {
+            var imageSrc = "data:image/jpeg;base64," + imageData;
+            var id = Contacts.add(imageSrc);
+            return id;
+          }
+          else {
+            return -1;
+          }
+        }, function(err) {
+          alert(err);
+        })
+        .then(function(newID) {
+            if (newID >= 0) {
+              $state.go('tab.contacts-detail', { "contactId": newID });
+            }
+        });
+    }
+
 
     // Filters
     $scope.checkField = function(field) {
