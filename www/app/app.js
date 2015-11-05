@@ -32,11 +32,11 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'app/shared/tabs/tabs.html'
-  })
+  //   .state('tab', {
+  //   url: '/tab',
+  //   abstract: true,
+  //   templateUrl: 'app/shared/tabs/tabs.html'
+  // })
 
   // Each tab has its own nav history stack:
   // .state('tab.profile', {
