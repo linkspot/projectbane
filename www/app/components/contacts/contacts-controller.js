@@ -74,7 +74,6 @@ angular.module('linkspot')
         });
     }
 
-
     // Filters
     $scope.checkField = function(field) {
         return $scope.field == field ? true : false;

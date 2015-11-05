@@ -55,7 +55,10 @@
                     </label>
                     <label class="item" ng-click="toggleLeftSideMenu()">
                         <i class="icon ion-ios-pricetag ion-positive placeholder-icon"></i>
-                        <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">{{selectedTag}}</span>
+                        <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">
+                            <span ng-show="isNotFirst(selectedTag)">,</span>
+                            {{selectedTag}}
+                        </span>
                     </label>
                 </div>
 

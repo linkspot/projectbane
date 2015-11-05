@@ -38,6 +38,10 @@ angular.module('linkspot')
         return _.contains($scope.selectedTags, tag);
     }
 
+    $scope.isNotFirst = function(tag) {
+        return _.indexOf($scope.selectedTags, tag) > 0;
+    }
+
     $scope.toggleSelectTag = function(tag) {
         var index = _.indexOf($scope.selectedTags, tag);
         if (index != -1)
@@ -94,7 +98,7 @@ angular.module('linkspot')
         $scope.data = {}
 
         var myPopup = $ionicPopup.show({
-            template: '<input type="text" ng-model="data.newTag">',
+            template: '<input autofocus type="text" ng-model="data.newTag">',
             title: 'Add New Tag',
             subTitle: 'Please type in new tag name.',
             scope: $scope,
@@ -106,12 +110,17 @@ angular.module('linkspot')
                     onTap: function(e) {
                         if (!$scope.data.newTag)
                             e.preventDefault();  //don't allow the user to close unless he enters wifi password
-                        else
+                        else {
                             // return $scope.data.newTag;
                             console.log($scope.data.newTag);
+                            Tags.add($scope.data.newTag);
+                        }
                     }
                 }
             ]
+        });
+        myPopup.then(function(res) {
+            $state.go($state.current, {}, {reload: true});
         });
     };
 
