@@ -21,7 +21,8 @@ angular.module('linkspot')
 	                // 	+ " and expires on " + authData.expires, authData.uid);
 
                 	Users.setUserId(authData.uid, function(){
-                		$state.go('tab.profile');
+                		// $state.go('tab.profile');
+                		$state.go('contacts');
                 	});
 
 	                

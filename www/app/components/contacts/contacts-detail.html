@@ -13,6 +13,21 @@
 
     <ion-side-menus>
 
+        <ion-side-menu side="left">
+            <ion-content class="has-header">
+                <ion-list>
+                    <label class="item" ng-click="showPopup()">
+                        <div class="item-content"> Add New Tag </div>
+                    </label>
+                    <label class="item item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="toggleSelectTag(tag.$value)">
+                        <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
+                        <div class="item-content"> {{tag.$value | capitalize}} </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+
         <ion-side-menu-content>
             <ion-content class="contact-detail-container">
                 <div>
@@ -38,7 +53,7 @@
                         <i class="icon ion-document-text ion-positive placeholder-icon"></i>
                         <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
                     </label>
-                    <label class="item" ng-click="toggleRightSideMenu()">
+                    <label class="item" ng-click="toggleLeftSideMenu()">
                         <i class="icon ion-ios-pricetag ion-positive placeholder-icon"></i>
                         <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">{{selectedTag}}</span>
                     </label>
@@ -47,28 +62,10 @@
                 <button ng-click="updateContact()"> Update Contact </button>
                 <button ng-click="removeContact()"> Delete Contact </button>
 
+
+
             </ion-content>
         </ion-side-menu-content>
-
-        <ion-side-menu side="right">
-            <ion-content class="has-header">
-<!--                 <ul class="list">
-                    <li class="item item-checkbox" ng-repeat="tag in tags | orderBy:'$value'">
-                        <label class="checkbox"> 
-                            <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
-                        </label>
-                        {{tag.$value | capitalize}} 
-                    </li>
-                </ul> -->
-                <ion-list>
-                    <label class="item item-icon-left item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="toggleSelectTag(tag.$value)">
-                        <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
-                        <div class="item-content"> {{tag.$value | capitalize}} </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                </ion-list>
-            </ion-content>
-        </ion-side-menu>
 
     </ion-side-menus>
 

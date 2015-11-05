@@ -1,12 +1,13 @@
 angular.module('linkspot')
 
-.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicSideMenuDelegate', '$cordovaCamera', 'Contacts', 'Camera', 'Tags', 
-            function($scope, $state, $stateParams, $ionicHistory, $ionicSideMenuDelegate, $cordovaCamera, Contacts, Camera, Tags) {
+.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicPopup','$ionicSideMenuDelegate', '$cordovaCamera', '$timeout', 'Contacts', 'Camera', 'Tags', 
+            function($scope, $state, $stateParams, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $cordovaCamera, $timeout, Contacts, Camera, Tags) {
     
     // $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     //     viewData.enableBack = true;
     //     forceBackButton();
     // });
+
     $scope.name = "Temp";
 
     $scope.$on( "$ionicView.enter", function() {
@@ -22,7 +23,7 @@ angular.module('linkspot')
 
     $scope.$watch(
         function () {
-            return $ionicSideMenuDelegate.isOpenRight();
+            return $ionicSideMenuDelegate.isOpenLeft();
         },
         function (isOpen) {
             if (isOpen)
@@ -33,10 +34,6 @@ angular.module('linkspot')
     );
     
     // Modify Tags
-    $scope.toggleRightSideMenu = function() {
-        $ionicSideMenuDelegate.toggleRight();
-    };
-
     $scope.isSelected = function(tag) {
         return _.contains($scope.selectedTags, tag);
     }
@@ -51,7 +48,8 @@ angular.module('linkspot')
 
   	// Contact
     $scope.updateContact = function() {
-      console.log($scope.contact);
+        $scope.contact.tags = $scope.selectedTags;
+        // console.log($scope.contact);
   		Contacts.update($scope.contact);
   	}
     $scope.removeContact = function() {
@@ -81,17 +79,40 @@ angular.module('linkspot')
         });
     }
 
-    // Back Button.
-    // var forceBackButton = function() {
-    //     console.log($ionicHistory.currentView());
-    //     var history = $ionicHistory.backView();
-        
-    //     history.url = "/tab/contacts";
-    //     history.stateId = "tab.contacts";
-    //     history.stateName = "tab.contacts";
-    //     history.title = "Contacts";
+    // Side Menus
+    $scope.toggleLeftSideMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 
-    //     console.log(history);
-    // }
+    $scope.toggleRightSideMenu = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
+    // Popup
+    // Triggered on a button click, or some other target
+    $scope.showPopup = function() {
+        $scope.data = {}
+
+        var myPopup = $ionicPopup.show({
+            template: '<input type="text" ng-model="data.newTag">',
+            title: 'Add New Tag',
+            subTitle: 'Please type in new tag name.',
+            scope: $scope,
+            buttons: [
+                { text: 'Cancel' },
+                {
+                    text: '<b>Add</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.data.newTag)
+                            e.preventDefault();  //don't allow the user to close unless he enters wifi password
+                        else
+                            // return $scope.data.newTag;
+                            console.log($scope.data.newTag);
+                    }
+                }
+            ]
+        });
+    };
 
 }]);

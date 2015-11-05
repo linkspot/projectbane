@@ -35,9 +35,12 @@
         <ion-side-menu side="right">
             <ion-content class="has-header">
                 <ion-list>
-                <a class="item item-icon-left" ng-click="logout()">
-                    <i class="icon ion-power"></i>Sign Out
-                  </a>
+                    <a class="item item-icon-left" ng-click="profile()">
+                        <i class="icon ion-gear-a"></i>My Account
+                    </a>
+                    <a class="item item-icon-left" ng-click="logout()">
+                        <i class="icon ion-power"></i>Sign Out
+                    </a>
                 </ion-list>
             </ion-content>
         </ion-side-menu>
@@ -47,16 +50,19 @@
                 <label class="item-input-wrapper textbox-search">
                     <i class="icon ion-search placeholder-icon"></i>
                     <input ng-show="checkField('name')" type="search" placeholder="Search by Name" ng-model="search.name">
+                    <!-- 
                     <input ng-show="checkField('phone')" type="search" placeholder="Search by Phone" ng-model="search.phone">
-                    <input ng-show="checkField('email')" type="search" placeholder="Search by Email" ng-model="search.email">
+                    <input ng-show="checkField('email')" type="search" placeholder="Search by Email" ng-model="search.email"> 
+                    -->
                 </label>
-                <button class="button button-icon icon ion-android-search" ng-click="openPopover($event)"></button>
+                <!-- <button class="button button-icon icon ion-android-search" ng-click="openPopover($event)"></button> -->
             </div>
 
             <ion-content class="has-subheader">
                 <ion-list class="contacts-category-container">
                     <!-- Order by Field and Filter by Tag-->
-                    <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}">
+                    <!-- <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}"> -->
+                    <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/contacts/{{contact.id}}">
                         <img class="contacts-column-img" ng-src="{{contact.card}}">
                         <h2>{{contact.name}}</h2>
                         <!--
@@ -73,20 +79,6 @@
                 Add Contact                 
             </button>
         </ion-side-menu-content>
-
-        <!--
-        <ion-side-menu side="right">
-            <ion-content class="has-header">
-                <ion-list>
-                    <label class="item item-radio" menu-close ng-repeat="field in fields" ng-click="searchBy(field)">
-                        <input type="radio" name="searchFields" ng-checked="$index==0?true:false">
-                        <div class="item-content"> {{field | capitalize}} </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                </ion-list>
-            </ion-content>
-        </ion-side-menu>
-        -->
 
     </ion-side-menus>
 

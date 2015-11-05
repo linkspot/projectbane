@@ -5,10 +5,10 @@
 }
 
 .vert-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /*position: absolute;*/
+    padding-top: 25%;
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
 }
 
 .grad {
@@ -40,6 +40,7 @@
 }
 
 /* Contacts: Search Bar*/
+/*
 .platform-android .bar-subheader{
 	top: 93px !important;
 }
@@ -47,17 +48,20 @@
 .platform-android .has-subheader {
 	top: 137px;
 }
+*/
 
 /* Contacts: Bottom Button */
 .bottom-button {
     position: fixed;
-    bottom: 2.44em;
+    bottom: -0.6em;
     border-radius: 0px;
 }
 
+/*
 .platform-android .bottom-button {
     bottom: -0.6em;
 }
+*/
 
 /* Profile */
 .profilePhoto {

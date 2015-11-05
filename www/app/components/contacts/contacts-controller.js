@@ -9,6 +9,12 @@ angular.module('linkspot')
 //
 //$scope.$on('$ionicView.enter', function(e) {
 //});
+
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = false;
+        $ionicSideMenuDelegate.toggleRight(false);
+    });
+
     $scope.title = "Contacts";
     $scope.contacts = Contacts.all();
 
@@ -61,7 +67,9 @@ angular.module('linkspot')
         })
         .then(function(newID) {
             if (newID >= 0) {
-              $state.go('tab.contacts-detail', { "contactId": newID });
+              // $state.go('tab.contacts-detail', { "contactId": newID });
+              $state.go('contacts-detail', { "contactId": newID });
+
             }
         });
     }
@@ -95,20 +103,20 @@ angular.module('linkspot')
         // $scope.updateRightMenuTitle();
     };
 
-    // Popovers
-    $ionicPopover.fromTemplateUrl('app/components/contacts/popover-search.html', {
-        scope: $scope,
-    }).then(function(popover) {
-        $scope.popover = popover;
-    });
+    // // Popovers
+    // $ionicPopover.fromTemplateUrl('app/components/contacts/popover-search.html', {
+    //     scope: $scope,
+    // }).then(function(popover) {
+    //     $scope.popover = popover;
+    // });
 
-    $scope.openPopover = function($event) {
-        $scope.popover.show($event);
-    };
+    // $scope.openPopover = function($event) {
+    //     $scope.popover.show($event);
+    // };
 
-    $scope.closePopover = function() {
-        $scope.popover.hide();
-    };
+    // $scope.closePopover = function() {
+    //     $scope.popover.hide();
+    // };
 
     // Side Menus
     $scope.toggleLeftSideMenu = function() {
@@ -117,6 +125,10 @@ angular.module('linkspot')
 
     $scope.toggleRightSideMenu = function() {
         $ionicSideMenuDelegate.toggleRight();
+    };
+
+    $scope.profile = function() {
+        $state.go('profile');
     };
 
     $scope.logout = function() {

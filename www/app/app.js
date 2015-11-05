@@ -39,44 +39,58 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   })
 
   // Each tab has its own nav history stack:
-
-  .state('tab.profile', {
-    cache: false,
+  // .state('tab.profile', {
+  //   cache: false,
+  //   url: '/profile',
+  //   views: {
+  //     'tab-profile': {
+  //       templateUrl: 'app/components/user/tab-profile.html',
+  //       controller: 'ProfileCtrl'
+  //     }
+  //   }
+  // })
+  // .state('tab.contacts', {
+  //     url: '/contacts',
+  //     views: {
+  //       'tab-contacts': {
+  //         templateUrl: 'app/components/contacts/tab-contacts.html',
+  //         controller: 'ContactsCtrl'
+  //       }
+  //     }
+  //   })
+  //   .state('tab.contacts-detail', {
+  //     url: '/contacts/:contactId',
+  //     views: {
+  //       'tab-contacts': {
+  //         templateUrl: 'app/components/contacts/contacts-detail.html',
+  //         controller: 'ContactsDetailCtrl'
+  //       }
+  //     }
+  //   })
+  // .state('tab.camera', {
+  //   url: '/camera',
+  //   views: {
+  //     'tab-camera': {
+  //       templateUrl: 'app/components/camera/tab-camera.html',
+  //       controller: 'CameraCtrl'
+  //     }
+  //   }
+  // })
+  .state('profile', {
+    // cache: false,
     url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'app/components/user/tab-profile.html',
-        controller: 'ProfileCtrl'
-      }
-    }
+    templateUrl: 'app/components/user/tab-profile.html',
+    controller: 'ProfileCtrl'
   })
-
-  .state('tab.contacts', {
-      url: '/contacts',
-      views: {
-        'tab-contacts': {
-          templateUrl: 'app/components/contacts/tab-contacts.html',
-          controller: 'ContactsCtrl'
-        }
-      }
-    })
-    .state('tab.contacts-detail', {
-      url: '/contacts/:contactId',
-      views: {
-        'tab-contacts': {
-          templateUrl: 'app/components/contacts/contacts-detail.html',
-          controller: 'ContactsDetailCtrl'
-        }
-      }
-    })
-  .state('tab.camera', {
-    url: '/camera',
-    views: {
-      'tab-camera': {
-        templateUrl: 'app/components/camera/tab-camera.html',
-        controller: 'CameraCtrl'
-      }
-    }
+  .state('contacts', {
+    url: '/contacts',
+    templateUrl: 'app/components/contacts/tab-contacts.html',
+    controller: 'ContactsCtrl'
+  })
+  .state('contacts-detail', {
+    url: '/contacts/:contactId',
+    templateUrl: 'app/components/contacts/contacts-detail.html',
+    controller: 'ContactsDetailCtrl'
   })
   .state('intro', {
     url: '/',
