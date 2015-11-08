@@ -3,10 +3,9 @@ angular.module('linkspot')
 .controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicPopup','$ionicSideMenuDelegate', '$cordovaCamera', '$timeout', 'Contacts', 'Camera', 'Tags', 
             function($scope, $state, $stateParams, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $cordovaCamera, $timeout, Contacts, Camera, Tags) {
     
-    // $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-    //     viewData.enableBack = true;
-    //     forceBackButton();
-    // });
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        $ionicSideMenuDelegate.toggleRight(false);
+    });
 
     $scope.name = "Temp";
 
@@ -92,6 +91,14 @@ angular.module('linkspot')
         $ionicSideMenuDelegate.toggleRight();
     };
 
+    $scope.profile = function() {
+        $state.go('profile');
+    };
+
+    $scope.logout = function() {
+        $state.go('login');
+    };
+
     // Popup
     // Triggered on a button click, or some other target
     $scope.showPopup = function() {
@@ -119,6 +126,9 @@ angular.module('linkspot')
                 }
             ]
         });
+
+        window.cordova.plugins.Keyboard.show();
+
         myPopup.then(function(res) {
             $state.go($state.current, {}, {reload: true});
         });

@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in all files with 'controller' in the name
 angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicSideMenuDelegate, $rootScope, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,16 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    document.addEventListener('touchstart', function (event) {
+      // workaround for Android
+      if ($ionicSideMenuDelegate.isOpenLeft()) {
+          event.preventDefault();
+      }
+      if ($ionicSideMenuDelegate.isOpenRight()) {
+          event.preventDefault();
+      }
+    });
   });
 })
 
@@ -32,7 +42,7 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-  //   .state('tab', {
+  // .state('tab', {
   //   url: '/tab',
   //   abstract: true,
   //   templateUrl: 'app/shared/tabs/tabs.html'
