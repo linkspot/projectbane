@@ -6,6 +6,14 @@ angular.module('linkspot')
 			$state.go('login');
 		};
 
+		$scope.goToLogin = function() {
+			$state.go('login');
+		}
+
+		$scope.goToSignup = function() {
+			$state.go('signup');
+		}
+
 		// Called each time the slide changes
 		$scope.slideChanged = function(index) {
 			$scope.slideIndex = index;

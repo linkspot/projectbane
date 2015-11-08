@@ -11,10 +11,10 @@
     /*transform: translate(-50%, -50%);*/
 }
 
-.grad {
+/*.grad {
     background: linear-gradient(#aaf6ad, #61da66);
     height: 100%;
-}
+}*/
 
 /* Contacts: Display */
 .contacts-column {
@@ -93,3 +93,22 @@
     box-shadow: none;
     font-size: 35px;
 }
+
+.intro-buttons-container {
+    position: fixed; 
+    bottom: 50px;
+    width: 100%;
+}
+
+.intro-buttons-container > div {
+    width: 325px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.intro-buttons-container button {
+    width: 160px;
+}
+
+
