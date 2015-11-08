@@ -5,11 +5,6 @@ angular.module('linkspot')
     
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         $ionicSideMenuDelegate.toggleRight(false);
-    });
-
-    $scope.name = "Temp";
-
-    $scope.$on( "$ionicView.enter", function() {
         $scope.contact = Contacts.get($stateParams.contactId);
         $scope.name = $scope.contact.name;
         $scope.title = $scope.name;
@@ -18,6 +13,13 @@ angular.module('linkspot')
         if ($scope.selectedTags == null)
             $scope.selectedTags = [];
         $scope.tags = Tags.all();
+
+    });
+
+    $scope.name = "Temp";
+
+    $scope.$on( "$ionicView.enter", function() {
+        //code here
     });
 
     $scope.$watch(
