@@ -13,7 +13,7 @@
 
     <ion-side-menus enable-menu-with-back-views="true">
 
-        <ion-side-menu side="left">
+<!--         <ion-side-menu side="left">
             <ion-content class="has-header">
                 <ion-list>
                     <label class="item" ng-click="showPopup()">
@@ -26,7 +26,7 @@
                     </label>
                 </ion-list>
             </ion-content>
-        </ion-side-menu>
+        </ion-side-menu> -->
 
         <ion-side-menu side="right">
             <ion-content class="has-header">
@@ -43,44 +43,46 @@
 
         <ion-side-menu-content>
             <ion-content class="contact-detail-container">
-                <div>
+
+                <div class="contact-detail-image-container">
                     <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
                 </div>
 
-                <div class="list">
-                    <label class="item item-input item-icon-left">
-                        <i class="icon ion-person ion-positive placeholder-icon"></i>
-                        <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
-                    </label>
-                    <label class="item item-input item-icon-left item-icon-right">
-                        <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
-                        <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
-                        <a class="button ion-ios-telephone-outline" ng-href="tel: {{contact.phone}}"></a>
-                    </label>
-                    <label class="item item-input item-icon-left item-icon-right">
-                        <i class="icon ion-email ion-positive placeholder-icon"></i>
-                        <input type="email" ng-model="contact.email" placeholder="email@example.com">
-                        <a class="button ion-ios-email-outline" ng-href="mailto: {{contact.email}}"></a>   
-                    </label>
-                    <label class="item item-input item-icon-left">
-                        <i class="icon ion-document-text ion-positive placeholder-icon"></i>
-                        <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
-                    </label>
-                    <label class="item" ng-click="toggleLeftSideMenu()">
-                        <i class="icon ion-ios-pricetag ion-positive placeholder-icon"></i>
-                        <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">
-                            <span ng-show="isNotFirst(selectedTag)">,</span>
-                            {{selectedTag}}
-                        </span>
-                    </label>
+                <div class="list contact-detail-notes">
+                    <li class="item">
+                    <h4>Notes</h4>
+                    <p>{{contact.notes}}</p>
+                    </li>
+
+                  </label>
                 </div>
 
-                <button ng-click="updateContact()"> Update Contact </button>
-                <button ng-click="removeContact()"> Delete Contact </button>
+                <div class="padding">
+                    <div><h4>{{contact.title}} at {{contact.company}}</h2></div>
+
+                    <div><h5>{{contact.name}}</h5></div>
+
+                    <div><p>{{contact.phone}}</p></div>
+
+                    <div><p>{{contact.email}}</p></div>
+
+                    <div><p>Tags: {{selectedTag}}
+                        <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">
+                            <span ng-show="isNotFirst(selectedTag)">,</span>{{selectedTag}}
+                        </span>
+                    </div>
+
+                </div>
 
 
 
             </ion-content>
+
+
+            <div class="contact-detail-button-bar button-bar">
+                  <a ng-href="#/contacts/{{contact.id}}/edit" class="button button-default">Edit Contact</a>
+                  <a class="button button-positive">Share Contact</a>
+            </div>
         </ion-side-menu-content>
 
     </ion-side-menus>

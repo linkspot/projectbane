@@ -82,7 +82,7 @@
     right: auto;
 }
 
-.contact-detail-container input {
+/*.contact-detail-container input {
   padding-left: 35px;
   padding-right: 45px;
 }
@@ -92,7 +92,7 @@
     border: none;
     box-shadow: none;
     font-size: 35px;
-}
+}*/
 
 .intro-buttons-container {
     position: fixed; 
@@ -111,4 +111,15 @@
     width: 160px;
 }
 
+.contact-detail-button-bar {
+    bottom: 0;
+    position: fixed;
+}
 
+.contact-detail-notes {
+    margin-bottom: 0;
+}
+
+.contact-detail-image-container {
+    height: 214px;
+}

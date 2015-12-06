@@ -1,0 +1,86 @@
+<ion-view view-title="{{title}}">
+    
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-navicon" ng-click="toggleRightSideMenu()"></button>
+    </ion-nav-buttons>
+
+    <ion-side-menus enable-menu-with-back-views="true">
+
+        <ion-side-menu side="left">
+            <ion-content class="has-header">
+                <ion-list>
+                    <label class="item" ng-click="showPopup()">
+                        <div class="item-content"> Add New Tag </div>
+                    </label>
+                    <label class="item item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="toggleSelectTag(tag.$value)">
+                        <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
+                        <div class="item-content"> {{tag.$value | capitalize}} </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+
+        <ion-side-menu side="right">
+            <ion-content class="has-header">
+                <ion-list>
+                    <a class="item item-icon-left" ng-click="profile()">
+                        <i class="icon ion-gear-a"></i>My Account
+                    </a>
+                    <a class="item item-icon-left" ng-click="logout()">
+                        <i class="icon ion-power"></i>Sign Out
+                    </a>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+
+        <ion-side-menu-content>
+
+            <ion-content>
+
+                <div class="list">
+                <label class="item item-input item-icon-left">
+                    <i class="icon ion-person ion-positive placeholder-icon"></i>
+                    <input type="text" ng-model="contact.name" placeholder="Full Name"></input>
+                </label>
+                <label class="item item-input item-icon-left item-icon-right">
+                    <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                    <input type="phone" ng-model="contact.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;">
+                    <a class="button ion-ios-telephone-outline" ng-href="tel: {{contact.phone}}"></a>
+                </label>
+                <label class="item item-input item-icon-left item-icon-right">
+                    <i class="icon ion-email ion-positive placeholder-icon"></i>
+                    <input type="email" ng-model="contact.email" placeholder="email@example.com">
+                    <a class="button ion-ios-email-outline" ng-href="mailto: {{contact.email}}"></a>   
+                </label>
+                <label class="item item-input item-icon-left">
+                    <i class="icon ion-document-text ion-positive placeholder-icon"></i>
+                    <input type="text" ng-model="contact.notes" placeholder="Notes"></input>
+                </label>
+                <label class="item" ng-click="toggleLeftSideMenu()">
+                    <i class="icon ion-ios-pricetag ion-positive placeholder-icon"></i>
+                    <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">
+                        <span ng-show="isNotFirst(selectedTag)">,</span>
+                        {{selectedTag}}
+                    </span>
+                </label>
+                </div>
+
+            </ion-content>
+
+
+            <div class="contact-detail-button-bar button-bar">
+                  <!-- <a ng-click="removeContact()" class="button button-clear button-assertive">Delete Contact</a> -->
+                  <a class="button button-assertive">Delete Contact</a>
+                  <a ng-click="updateContact()" class="button button-positive">Update Contact</a>
+            </div>
+
+        </ion-side-menu-content>
+
+    </ion-side-menus>
+
+
+</ion-view>
+
+
+
