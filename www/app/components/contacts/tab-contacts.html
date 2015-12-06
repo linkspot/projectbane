@@ -62,17 +62,24 @@
             <ion-content class="has-subheader">
                 <ion-list>
                     <!-- Order by Field and Filter by Tag-->
-                    <!-- <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}"> -->
-<!--                     <span ng-repeat="(company, companyContacts) in companies | orderBy:company">
+                    <!-- May phase out if filter by tags not needed -->
+                    <!--
+                    <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}"> 
+                    -->
+                    
+                    <!-- With Dividers -->
+                    <!--
+                    <span ng-repeat="(company, companyContacts) in companies | orderBy:company">
                         <ion-item class="item item-divider"> {{company}} </ion-item>
                         <ion-item class="item item-avatar" ng-repeat="contact in companyContacts" href="#/contacts/{{contact.id}}"> 
                             <img ng-src="assets/img/ionic.png">
                             <h2>{{contact.name}}</h2>
                             <p>{{contact.title}}</p>
                         </ion-item>
-                    </span> -->
+                    </span> 
+                    -->
 
-                    
+                    <!-- By Company -->
                     <ion-item class="item item-avatar" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/contacts/{{contact.id}}">
                         <img ng-src="assets/img/ionic.png">
                         <h2>{{contact.company}}</h2>
