@@ -1,11 +1,11 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform','$timeout', 'Users', 'Contacts', 'Camera', '$ionicSideMenuDelegate',
-	function($scope, $state, $cordovaCamera, $ionicPlatform, $timeout, Users, Contacts, Camera, $ionicSideMenuDelegate) {
+.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform', 'Users', 'Camera', '$ionicSideMenuDelegate',
+	function($scope, $state, $cordovaCamera, $ionicPlatform, Users, Camera, $ionicSideMenuDelegate) {
 
 	// $scope.user = "";
 
-	$scope.$on( "$ionicView.enter", function() {
+	$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         // $scope.profilePhoto = Camera.getProfile();
         $scope.user = Users.get();
     });

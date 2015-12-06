@@ -34,7 +34,7 @@ angular.module('linkspot')
 	        				Users.add(uid, fullName, email);
 
 		                	Users.setUserId(uid, function() {
-		                		$state.go('tab.profile');
+		                		$state.go('contacts');
 		                	});
 
 		        		});

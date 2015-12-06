@@ -13,10 +13,9 @@ angular.module('linkspot')
         if ($scope.selectedTags == null)
             $scope.selectedTags = [];
         $scope.tags = Tags.all();
-
     });
 
-    $scope.name = "Temp";
+    // $scope.name = "Temp";
 
     $scope.$on( "$ionicView.enter", function() {
         //code here

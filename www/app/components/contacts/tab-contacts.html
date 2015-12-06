@@ -49,6 +49,7 @@
             <div class="bar bar-subheader item-input-inset">
                 <label class="item-input-wrapper textbox-search">
                     <i class="icon ion-search placeholder-icon"></i>
+                    <!-- <input ng-show="checkField('company')" type="search" placeholder="Search by Company" ng-model="search.company"> -->
                     <input ng-show="checkField('name')" type="search" placeholder="Search by Name" ng-model="search.name">
                     <!-- 
                     <input ng-show="checkField('phone')" type="search" placeholder="Search by Phone" ng-model="search.phone">
@@ -59,18 +60,25 @@
             </div>
 
             <ion-content class="has-subheader">
-                <ion-list class="contacts-category-container">
+                <ion-list>
                     <!-- Order by Field and Filter by Tag-->
                     <!-- <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}"> -->
-                    <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/contacts/{{contact.id}}">
-                        <img class="contacts-column-img" ng-src="{{contact.card}}">
-                        <h2>{{contact.name}}</h2>
-                        <!--
-                        <h2 ng-show="checkField('name')">{{contact.name}}</h2>
-                        <h2 ng-show="checkField('phone')">{{contact.phone}}</h2>
-                        <h2 ng-show="checkField('email')">{{contact.email}}</h2> 
-                        -->
+<!--                     <span ng-repeat="(company, companyContacts) in companies | orderBy:company">
+                        <ion-item class="item item-divider"> {{company}} </ion-item>
+                        <ion-item class="item item-avatar" ng-repeat="contact in companyContacts" href="#/contacts/{{contact.id}}"> 
+                            <img ng-src="assets/img/ionic.png">
+                            <h2>{{contact.name}}</h2>
+                            <p>{{contact.title}}</p>
+                        </ion-item>
+                    </span> -->
+
+                    
+                    <ion-item class="item item-avatar" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/contacts/{{contact.id}}">
+                        <img ng-src="assets/img/ionic.png">
+                        <h2>{{contact.company}}</h2>
+                        <p>{{contact.name}}, {{contact.title}}</p>
                     </ion-item>
+                    
                 </ion-list>
 
             </ion-content>

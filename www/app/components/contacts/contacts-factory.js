@@ -9,6 +9,25 @@ angular.module('linkspot')
         all: function() {
             return contacts;
         },
+        companies: function() {
+            var companies = {};
+            dataRef.once("value", function(snapshot) {
+                // The callback function will get called once for each contact.
+                snapshot.forEach(function(childSnapshot) {
+                    // This will return the contact's unique id.
+                    var key = childSnapshot.key();
+                    // Will return the actual contact data.
+                    var contact = childSnapshot.val();
+
+                    if (companies[contact.company] == undefined) {
+                        companies[contact.company] = [];
+                    }  
+                    companies[contact.company].push(contact);
+                });
+            });
+
+            return companies;
+        },
         add: function(imageSrc) {
             // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
             var lastId = contacts.length - 1;
