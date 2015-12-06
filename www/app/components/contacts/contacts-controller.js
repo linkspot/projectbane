@@ -68,7 +68,7 @@ angular.module('linkspot')
         .then(function(newID) {
             if (newID >= 0) {
               // $state.go('tab.contacts-detail', { "contactId": newID });
-              $state.go('contacts-detail', { "contactId": newID });
+              $state.go('contacts-detail-edit', { "contactId": newID });
 
             }
         });

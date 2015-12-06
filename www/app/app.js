@@ -40,52 +40,6 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-  // setup an abstract state for the tabs directive
-  // .state('tab', {
-  //   url: '/tab',
-  //   abstract: true,
-  //   templateUrl: 'app/shared/tabs/tabs.html'
-  // })
-
-  // Each tab has its own nav history stack:
-  // .state('tab.profile', {
-  //   cache: false,
-  //   url: '/profile',
-  //   views: {
-  //     'tab-profile': {
-  //       templateUrl: 'app/components/user/tab-profile.html',
-  //       controller: 'ProfileCtrl'
-  //     }
-  //   }
-  // })
-  // .state('tab.contacts', {
-  //     url: '/contacts',
-  //     views: {
-  //       'tab-contacts': {
-  //         templateUrl: 'app/components/contacts/tab-contacts.html',
-  //         controller: 'ContactsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.contacts-detail', {
-  //     url: '/contacts/:contactId',
-  //     views: {
-  //       'tab-contacts': {
-  //         templateUrl: 'app/components/contacts/contacts-detail.html',
-  //         controller: 'ContactsDetailCtrl'
-  //       }
-  //     }
-  //   })
-  // .state('tab.camera', {
-  //   url: '/camera',
-  //   views: {
-  //     'tab-camera': {
-  //       templateUrl: 'app/components/camera/tab-camera.html',
-  //       controller: 'CameraCtrl'
-  //     }
-  //   }
-  // })
   .state('profile', {
     // cache: false,
     url: '/profile',
