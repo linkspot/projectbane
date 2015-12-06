@@ -13,17 +13,17 @@ angular.module('linkspot')
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = false;
         $ionicSideMenuDelegate.toggleRight(false);
+        $scope.title = "Contacts";
+        $scope.contacts = Contacts.all();
+        $scope.companies = Contacts.companies();
+
+        $scope.tags = Tags.allTrimmed();
+        $scope.selectedTags = [];
     });
-
-    $scope.title = "Contacts";
-    $scope.contacts = Contacts.all();
-
-    $scope.tags = Tags.allTrimmed();
-    $scope.selectedTags = [];
 
     $scope.search = "";
     $scope.field = "name";
-    $scope.fields = ["name", "phone", "email"];
+    $scope.fields = ["name", "phone", "email", "company"];
 
     $scope.$watch(
         function () {
