@@ -120,6 +120,6 @@
     margin-bottom: 0;
 }
 
-.contact-detail-image-container {
-    height: 214px;
+.contact-detail-notes .item {
+    border-top: none;
 }
