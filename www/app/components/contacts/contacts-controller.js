@@ -78,6 +78,7 @@ angular.module('linkspot')
         return $scope.field == field ? true : false;
     }
 
+    // TODO: Check filtering with multiple people in same company.
     $scope.checkSearch = function(selectedTags, search, company) {
         // Check if search is empty.
         var search_name = "";
