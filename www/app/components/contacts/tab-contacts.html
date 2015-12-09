@@ -83,7 +83,7 @@
                     <ion-item class="item item-avatar" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/contacts/{{contact.id}}">
                         <img ng-src="assets/img/ionic.png">
                         <h2>{{contact.company}}</h2>
-                        <p>{{contact.name}}, {{contact.title}}</p>
+                        <p>{{contact.firstName + " " + contact.lastName}}, {{contact.title}}</p>
                     </ion-item>
                     
                 </ion-list>

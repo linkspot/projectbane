@@ -6,7 +6,7 @@ angular.module('linkspot')
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         $ionicSideMenuDelegate.toggleRight(false);
         $scope.contact = Contacts.get($stateParams.contactId);
-        $scope.name = $scope.contact.name;
+        $scope.name = $scope.contact.firstName + " " + $scope.contact.lastName;
         $scope.title = $scope.name;
 
         $scope.selectedTags = $scope.contact.tags;
@@ -55,6 +55,8 @@ angular.module('linkspot')
         $scope.contact.tags = $scope.selectedTags;
         // console.log($scope.contact);
   		Contacts.update($scope.contact);
+        $state.go('contacts-detail', { "contactId": $scope.contact.id });
+
   	}
     $scope.removeContact = function() {
         Contacts.remove($scope.contact);
