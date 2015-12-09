@@ -69,7 +69,6 @@ angular.module('linkspot')
             if (newID >= 0) {
               // $state.go('tab.contacts-detail', { "contactId": newID });
               $state.go('contacts-detail-edit', { "contactId": newID });
-
             }
         });
     }
@@ -77,6 +76,33 @@ angular.module('linkspot')
     // Filters
     $scope.checkField = function(field) {
         return $scope.field == field ? true : false;
+    }
+
+    $scope.checkSearch = function(selectedTags, search, company) {
+        // Check if search is empty.
+        var search_name = "";
+        if (typeof search.name !== 'undefined')
+            search_name = search.name.toLowerCase();
+
+        // Check if search contains contact name.
+        var contacts = $scope.companies[company];
+        var containsSearch = false;
+        var containsTags = false;
+        for (var i = 0; i < contacts.length; i++) {
+            var contact = contacts[i].name.toLowerCase();
+            if (contact.indexOf(search_name) > -1)
+                containsSearch = true;
+
+            var tags = contacts[i].tags;
+            var commonTags = _.intersection(selectedTags, tags);
+            if (commonTags.length > 0)
+                containsTags = true;
+        }
+        if (search_name == "")
+            containsSearch = true;
+        if (selectedTags.length == 0)
+            containsTags = true;
+        return containsSearch && containsTags;
     }
 
     $scope.clearSelectedTags = function() {
