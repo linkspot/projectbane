@@ -67,6 +67,7 @@
                     <ion-item class="contacts-column" ng-repeat="contact in contacts | selectTags:selectedTags | filter:search | orderBy:field" href="#/tab/contacts/{{contact.id}}"> 
                     -->
                     
+                    <!-- TODO: use firstName and lastName instead of name -->
                     <!-- With Dividers -->
                     <span ng-repeat="(company, companyContacts) in companies | orderBy:company">
                         <ion-item class="item item-divider" ng-show="checkSearch(selectedTags, search, company)"> {{company}} </ion-item>
