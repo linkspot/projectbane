@@ -5,28 +5,15 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{title}}">
-    
+
+    <ion-nav-title>{{title}}</ion-nav-title>
+
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-navicon" ng-click="toggleRightSideMenu()"></button>
     </ion-nav-buttons>
 
 
     <ion-side-menus enable-menu-with-back-views="true">
-
-<!--         <ion-side-menu side="left">
-            <ion-content class="has-header">
-                <ion-list>
-                    <label class="item" ng-click="showPopup()">
-                        <div class="item-content"> Add New Tag </div>
-                    </label>
-                    <label class="item item-radio" ng-repeat="tag in tags | orderBy:'$value'" ng-click="toggleSelectTag(tag.$value)">
-                        <input type="checkbox" name="selectTags" ng-checked="isSelected(tag.$value)">
-                        <div class="item-content"> {{tag.$value | capitalize}} </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                </ion-list>
-            </ion-content>
-        </ion-side-menu> -->
 
         <ion-side-menu side="right">
             <ion-content class="has-header">
@@ -42,6 +29,7 @@
         </ion-side-menu>
 
         <ion-side-menu-content>
+        
             <ion-content class="contact-detail-container">
 
                 <div class="contact-detail-image-container">
@@ -59,7 +47,7 @@
                 <div class="padding">
                     <div><h4>{{contact.title}} at {{contact.company}}</h2></div>
 
-                    <div><h5>{{contact.name}}</h5></div>
+                    <div><h5>{{contact.firstName + " " + contact.lastName}}</h5></div>
 
                     <div><p>{{contact.phone}}</p></div>
 
@@ -72,8 +60,6 @@
                     </div>
 
                 </div>
-
-
 
             </ion-content>
 
