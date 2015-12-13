@@ -78,6 +78,12 @@ angular.module('linkspot')
         return $scope.field == field ? true : false;
     }
 
+    // TODO: fix tag filter/search filter for contacts from the same company.
+        // Example 
+        // -> Angela, Cerina -> House of Moves
+        // -> Angela -> Restaurants, Cerina -> Medical Field
+        // -> Medical Field Tag is selected, search for Angela.
+        // Header for House of Moves should disappear but doesn't
     $scope.checkSearch = function(selectedTags, search, company) {
         // Check if search is empty. If so, assign search to an empty string.
         var searchName = "";
