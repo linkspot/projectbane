@@ -16,14 +16,14 @@ angular.module('linkspot')
         $scope.title = "Contacts";
         $scope.contacts = Contacts.all();
         $scope.companies = Contacts.companies();
-
-        $scope.tags = Tags.allTrimmed();
-        $scope.selectedTags = [];
     });
 
+    $scope.tags = Tags.allTrimmed();
+    $scope.selectedTags = [];
+
     $scope.search = "";
-    $scope.field = "name";
-    $scope.fields = ["name", "phone", "email", "company"];
+    $scope.field = "fullName";
+    $scope.fields = ["name", "phone", "email", "company", "fullName"];
 
     $scope.$watch(
         function () {
@@ -78,20 +78,21 @@ angular.module('linkspot')
         return $scope.field == field ? true : false;
     }
 
-    // TODO: Check filtering with multiple people in same company.
     $scope.checkSearch = function(selectedTags, search, company) {
-        // Check if search is empty.
-        var search_name = "";
-        if (typeof search.name !== 'undefined')
-            search_name = search.name.toLowerCase();
+        // Check if search is empty. If so, assign search to an empty string.
+        var searchName = "";
+        if (typeof search.fullName !== 'undefined')
+            searchName = search.fullName.toLowerCase();
 
-        // Check if search contains contact name.
+        // Initialize variables.
         var contacts = $scope.companies[company];
         var containsSearch = false;
         var containsTags = false;
+
+        // For all contacts, check if contact is in search and also in tags.
         for (var i = 0; i < contacts.length; i++) {
-            var contact = contacts[i].name.toLowerCase();
-            if (contact.indexOf(search_name) > -1)
+            var contact = contacts[i].fullName.toLowerCase();
+            if (contact.indexOf(searchName) > -1)
                 containsSearch = true;
 
             var tags = contacts[i].tags;
@@ -99,10 +100,14 @@ angular.module('linkspot')
             if (commonTags.length > 0)
                 containsTags = true;
         }
-        if (search_name == "")
+
+        // If no search and no tags, return all contacts.
+        if (searchName == "")
             containsSearch = true;
         if (selectedTags.length == 0)
             containsTags = true;
+
+        // Otherwise, return all contacts that satisfies both search and tag conditions.
         return containsSearch && containsTags;
     }
 
@@ -122,12 +127,6 @@ angular.module('linkspot')
             $scope.selectedTags.push(tag);
         // console.log($scope.selectedTags);
     }
-
-    $scope.searchBy = function(field) {
-        $scope.field = field;
-        $scope.closePopover();
-        // $scope.updateRightMenuTitle();
-    };
 
     // // Popovers
     // $ionicPopover.fromTemplateUrl('app/components/contacts/popover-search.html', {

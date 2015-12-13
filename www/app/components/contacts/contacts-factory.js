@@ -14,14 +14,16 @@ angular.module('linkspot')
             dataRef.once("value", function(snapshot) {
                 // The callback function will get called once for each contact.
                 snapshot.forEach(function(childSnapshot) {
-                    // This will return the contact's unique id.
-                    var key = childSnapshot.key();
-                    // Will return the actual contact data.
-                    var contact = childSnapshot.val();
+                    var key = childSnapshot.key();  // Returns the contact's unique id.
+                    var contact = childSnapshot.val();  // Returns the actual contact data.
 
-                    if (companies[contact.company] == undefined) {
+                    // Add in a fullName variable for searching purposes.
+                    // NOTE: may be better to put this outside of the factory
+                    var fullName = contact.firstName + ' ' + contact.lastName;
+                    contact.fullName = fullName;
+
+                    if (typeof companies[contact.company] == 'undefined')
                         companies[contact.company] = [];
-                    }  
                     companies[contact.company].push(contact);
                 });
             });
