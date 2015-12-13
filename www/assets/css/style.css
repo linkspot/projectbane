@@ -130,3 +130,17 @@
     font-weight: 400;   
     padding-bottom: 10px;
 }
+
+.contact-detail-container .padding div {
+    margin-top: 12px;
+}
+
+.contact-detail-icon{
+    border: none;
+    height: 10px;
+    background: none;
+    margin-top: -15px;
+    float: right;
+    text-align: center;
+    font-size: 30px;
+}
