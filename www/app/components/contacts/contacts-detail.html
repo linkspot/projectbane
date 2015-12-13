@@ -49,9 +49,19 @@
 
                     <div><h5>{{contact.firstName + " " + contact.lastName}}</h5></div>
 
-                    <div><p>{{contact.phone}}</p></div>
+                    <div>
+                        <p>
+                            {{contact.phone}}
+                            <a class="contact-detail-icon button ion-ios-telephone-outline" ng-href="tel: {{contact.phone}}"></a>
+                        </p>
+                    </div>
 
-                    <div><p>{{contact.email}}</p></div>
+                    <div>
+                        <p>
+                            {{contact.email}}
+                            <a class="contact-detail-icon button ion-ios-email-outline" ng-href="mailto: {{contact.email}}"></a>   
+                        </p>
+                    </div>
 
                     <div><p>Tags: {{selectedTag}}
                         <span style="font-size:14px;" ng-repeat="selectedTag in selectedTags">
@@ -62,6 +72,8 @@
                 </div>
 
             </ion-content>
+
+
 
 
             <div class="contact-detail-button-bar button-bar">
