@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$cordovaCamera','$ionicSideMenuDelegate', '$ionicPopover', 'Camera', 'Contacts', 'Tags', 'Users',
-            function($scope, $state, $cordovaCamera, $ionicSideMenuDelegate, $ionicPopover, Camera, Contacts, Tags, Users) {
+.controller('ContactsCtrl', ['$scope', '$state', '$cordovaCamera','$ionicSideMenuDelegate', '$ionicPopover', 'Camera', 'Contacts', 'Email', 'Tags', 'Users',
+            function($scope, $state, $cordovaCamera, $ionicSideMenuDelegate, $ionicPopover, Camera, Contacts, Email, Tags, Users) {
 // With the new view caching in Ionic, Controllers are only called
 // when they are recreated or on app start, instead of every page change.
 // To listen for when this page is active (for example, to refresh data),
@@ -78,12 +78,6 @@ angular.module('linkspot')
         return $scope.field == field ? true : false;
     }
 
-    // TODO: fix tag filter/search filter for contacts from the same company.
-        // Example 
-        // -> Angela, Cerina -> House of Moves
-        // -> Angela -> Restaurants, Cerina -> Medical Field
-        // -> Medical Field Tag is selected, search for Angela.
-        // Header for House of Moves should disappear but doesn't
     $scope.checkSearch = function(selectedTags, search, company) {
         // Check if search is empty. If so, assign search to an empty string.
         var searchName = "";
@@ -93,28 +87,24 @@ angular.module('linkspot')
         // Initialize variables.
         var contacts = $scope.companies[company];
         var containsSearch = false;
-        var containsTags = false;
 
         // For all contacts, check if contact is in search and also in tags.
         for (var i = 0; i < contacts.length; i++) {
-            var contact = contacts[i].fullName.toLowerCase();
-            if (contact.indexOf(searchName) > -1)
-                containsSearch = true;
-
             var tags = contacts[i].tags;
             var commonTags = _.intersection(selectedTags, tags);
-            if (commonTags.length > 0)
-                containsTags = true;
+            
+            // Check if contact contains tags. Or if no tags selected.
+            if (commonTags.length > 0 || selectedTags.length == 0) {
+                var contact = contacts[i].fullName.toLowerCase();
+                
+                // If tag exists, check contact is in search. Or if no search specified.
+                if (contact.indexOf(searchName) > -1 || searchName == "")
+                    containsSearch = true;
+            }
         }
 
-        // If no search and no tags, return all contacts.
-        if (searchName == "")
-            containsSearch = true;
-        if (selectedTags.length == 0)
-            containsTags = true;
-
-        // Otherwise, return all contacts that satisfies both search and tag conditions.
-        return containsSearch && containsTags;
+        // Return if company satisfies the search criteria.
+        return containsSearch;
     }
 
     $scope.clearSelectedTags = function() {
@@ -164,6 +154,13 @@ angular.module('linkspot')
 
     $scope.logout = function() {
         $state.go('login');
+    };
+
+    // Test Function
+    $scope.email = function() {
+        Email.send("angelgirl2272@gmail.com", "angelal4@uci.edu", "LinkSpot Testing", "Hello from LinkSpot!").success(function() {
+            console.log("sent email!");
+        });
     };
 
 }]);
