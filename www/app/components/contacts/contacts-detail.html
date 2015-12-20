@@ -30,7 +30,7 @@
 
         <ion-side-menu-content>
         
-            <ion-content class="contact-detail-container">
+            <ion-content class="contact-detail-container has-footer">
 
                 <div class="contact-detail-image-container">
                     <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
@@ -44,10 +44,11 @@
 
                 <div class="list contact-detail-notes">
                     <li class="item">
-                    <p>{{contact.notes ? contact.notes : "Notes"}}</p>
+                        <a class="contactNotesDisplay" ng-href="#/contacts/{{contact.id}}/notes">
+                            <p>{{contact.notes ? contact.notes : "Click to Add Notes"}}</p>
+                        </a>
                     </li>
 
-                  </label>
                 </div>
 
                 <div class="padding">
@@ -79,13 +80,11 @@
 
             </ion-content>
 
-
-
-
             <div class="contact-detail-button-bar button-bar">
                   <a ng-href="#/contacts/{{contact.id}}/edit" class="button button-default">Edit Contact</a>
                   <a class="button button-positive">Share Contact</a>
             </div>
+
         </ion-side-menu-content>
 
     </ion-side-menus>

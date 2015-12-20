@@ -6,6 +6,7 @@ angular.module('linkspot')
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         $ionicSideMenuDelegate.toggleRight(false);
         $scope.contact = Contacts.get($stateParams.contactId);
+        console.log($scope.contact);
         $scope.name = $scope.contact.firstName + " " + $scope.contact.lastName;
         $scope.title = $scope.name;
 
@@ -18,7 +19,10 @@ angular.module('linkspot')
     // $scope.name = "Temp";
 
     $scope.$on( "$ionicView.enter", function() {
-        //code here
+        var contactNotes = document.getElementById("contactNotes");
+        if (contactNotes != null) {
+            contactNotes.focus;
+        }
     });
 
     $scope.$watch(
@@ -52,12 +56,24 @@ angular.module('linkspot')
 
   	// Contact
     $scope.updateContact = function() {
-        $scope.contact.tags = $scope.selectedTags;
-        // console.log($scope.contact);
+        $scope.contact.company      = document.getElementById('company').value,
+        $scope.contact.title        = document.getElementById('title').value,
+        $scope.contact.firstName    = document.getElementById('firstName').value,
+        $scope.contact.lastName     = document.getElementById('lastName').value,
+        $scope.contact.phone        = document.getElementById('phone').value,
+        $scope.contact.email        = document.getElementById('email').value,
+        $scope.contact.tags         = $scope.selectedTags
+
   		Contacts.update($scope.contact);
         $state.go('contacts-detail', { "contactId": $scope.contact.id });
 
   	}
+    $scope.updateContactNotes = function() {
+        $scope.contact.notes = document.getElementById('contactNotes').value;
+        Contacts.update($scope.contact);
+        $state.go('contacts-detail', { "contactId": $scope.contact.id });
+    }
+
     $scope.removeContact = function() {
         Contacts.remove($scope.contact);
         $state.go('tab.contacts');

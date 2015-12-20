@@ -49,23 +49,24 @@
 
                 <div class="list list-inset">
 
-                    <div class="input-header">About</div>
+                <form id="contactEditForm">
 
+                    <div class="input-header">About</div>
                     <label class="item item-input">
                         <span class="input-label">Company</span>
-                    <input type="text" ng-model="contact.company">
+                    <input type="text" id="company" value="{{contact.company}}">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Title</span>
-                        <input type="text" ng-model="contact.title">
+                        <input type="text" id="title" value="{{contact.title}}">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">First Name</span>
-                        <input type="text" ng-model="contact.firstName">
+                        <input type="text" id="firstName" value="{{contact.firstName}}">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Last Name</span>
-                        <input type="text" ng-model="contact.lastName">
+                        <input type="text" id="lastName" value="{{contact.lastName}}">
                     </label>
 
                 </div>
@@ -76,11 +77,11 @@
 
                     <label class="item item-input">
                         <span class="input-label">Phone</span>
-                        <input type="text" ng-model="contact.phone" placeholder="xxx-xxx-xxxx">
+                        <input type="text" id="phone" value="{{contact.phone}}" placeholder="xxx-xxx-xxxx">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Email</span>
-                        <input type="email" ng-model="contact.email" placeholder="email@example.com">
+                        <input type="email" id="email" value="{{contact.email}}" placeholder="email@example.com">
                     </label>
                     <label class="item item-input" ng-click="toggleLeftSideMenu()">
                         <span class="input-label">Tags</span>
@@ -88,9 +89,12 @@
                             <span ng-show="isNotFirst(selectedTag)">,</span>
                             {{selectedTag}}
                         </span>
+                        <input type="hidden" id="tags" value="{{selectedTags}}">
                     </label>
 
                 </div>
+
+                </form>
 
             </ion-content>
 
