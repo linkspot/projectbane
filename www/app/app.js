@@ -60,12 +60,12 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   .state('contacts-detail-edit', {
     url: '/contacts/:contactId/edit',
     templateUrl: 'app/components/contacts/contacts-detail-edit.html',
-    controller: 'ContactsDetailCtrl'
+    controller: 'ContactsDetailEditCtrl'
   })
   .state('contacts-detail-notes', {
     url: '/contacts/:contactId/notes',
     templateUrl: 'app/components/contacts/contacts-detail-notes.html',
-    controller: 'ContactsDetailCtrl'
+    controller: 'ContactsDetailEditCtrl'
   })
   .state('intro', {
     url: '/',

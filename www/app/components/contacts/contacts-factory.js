@@ -46,6 +46,8 @@ angular.module('linkspot')
         get: function(contactId) {
             for (var i = 0; i < contacts.length; i++) {
                 if (contacts[i].id === parseInt(contactId)) {
+                    console.log("hit the factory again");
+                    console.log(contacts[i]);
                     return contacts[i];
                 }
             }
