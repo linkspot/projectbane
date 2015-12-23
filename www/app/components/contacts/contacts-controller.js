@@ -156,11 +156,4 @@ angular.module('linkspot')
         $state.go('login');
     };
 
-    // Test Function
-    $scope.email = function() {
-        Email.send("angelgirl2272@gmail.com", "angelal4@uci.edu", "LinkSpot Testing", "Hello from LinkSpot!").success(function() {
-            console.log("sent email!");
-        });
-    };
-
 }]);

@@ -36,12 +36,11 @@
                     <img class="full-image" src="{{contact.card}}" ng-click="showContactActionSheet()">
                 </div>
 
-                <!-- TEST SEND EMAIL
-                <button ng-click="sendEmail()" class="button button-icon icon ion-email">
+                <!-- TEST SEND EMAIL -->
+                <!-- <button ng-click="sendEmail()" class="button button-icon icon ion-email">
                     Send mail
-                </button>
-                -->
-
+                </button> -->
+               
                 <div class="list contact-detail-notes">
                     <li class="item">
                         <a class="contactNotesDisplay" ng-href="#/contacts/{{contact.id}}/notes">
@@ -66,7 +65,7 @@
                     <div>
                         <p>
                             {{contact.email}}
-                            <a class="contact-detail-icon button ion-ios-email-outline" ng-href="mailto: {{contact.email}}"></a>   
+                            <a class="contact-detail-icon button ion-ios-email-outline" ng-click="sendEmail()"></a>   
                         </p>
                     </div>
 

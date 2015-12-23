@@ -52,7 +52,7 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
     controller: 'ContactsCtrl'
   })
   .state('contacts-detail', {
-        cache: false,
+    cache: false,
     url: '/contacts/:contactId',
     templateUrl: 'app/components/contacts/contacts-detail.html',
     controller: 'ContactsDetailCtrl'
