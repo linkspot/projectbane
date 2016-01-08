@@ -65,7 +65,7 @@
                     <div>
                         <p>
                             {{contact.email}}
-                            <a class="contact-detail-icon button ion-ios-email-outline" ng-click="sendEmail()"></a>   
+                            <a class="contact-detail-icon button ion-ios-email-outline" href="mailto:{{contact.email}}"></a>   
                         </p>
                     </div>
 
@@ -81,7 +81,7 @@
 
             <div class="contact-detail-button-bar button-bar">
                   <a ng-href="#/contacts/{{contact.id}}/edit" class="button button-default">Edit Contact</a>
-                  <a class="button button-positive">Share Contact</a>
+                  <a class="button button-positive" ng-click="shareContact()">Share Contact</a>
             </div>
 
         </ion-side-menu-content>

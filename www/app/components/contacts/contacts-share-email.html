@@ -1,0 +1,29 @@
+<ion-view view-title="{{title}}">
+
+    <ion-nav-title>{{title}}</ion-nav-title>
+
+	<ion-side-menus enable-menu-with-back-views="true">
+		<ion-side-menu side="right">
+            <ion-content class="has-header">
+                <ion-list>
+                    <a class="item item-icon-left" ng-click="profile()">
+                        <i class="icon ion-gear-a"></i>My Account
+                    </a>
+                    <a class="item item-icon-left" ng-click="logout()">
+                        <i class="icon ion-power"></i>Sign Out
+                    </a>
+                </ion-list>
+            </ion-content>
+	    </ion-side-menu>
+
+	    <ion-side-menu-content>
+        
+            <ion-content>
+            	Hello
+            	<button ng-click="sendEmail()">Send Email</button>
+            </ion-content>
+
+        </ion-side-menu-content>
+	</ion-side-menus>
+
+</ion-view>
