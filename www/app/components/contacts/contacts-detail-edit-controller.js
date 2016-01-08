@@ -179,19 +179,10 @@ angular.module('linkspot')
         });
     };
 
-    // grab pointer to original function
-    var oldSoftBack = $rootScope.$ionicGoBack;
-
-    // override default behaviour
-    $rootScope.$ionicGoBack = function() {
-        // do something interesting here
-        // console.log($scope.contactBeforeUpdate);
-        // $scope.contactEdit = contactBeforeUpdate;
-        // Contacts.update($scope.contactEdit);
+    $scope.$ionicGoBack = function() {
         $state.go('contacts-detail', { "contactId": $scope.contactEdit.id });
         console.log($scope.contactEdit);
 
-        // oldSoftBack();
     };
 
 
