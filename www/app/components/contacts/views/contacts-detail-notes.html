@@ -1,6 +1,6 @@
 <ion-view view-title="Notes">
 
-    <ion-nav-title>Notes for {{contact.firstName}} {{contact.lastName}}</ion-nav-title>
+    <ion-nav-title>Notes for {{contactEdit.firstName}} {{contactEdit.lastName}}</ion-nav-title>
     
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-navicon" ng-click="toggleRightSideMenu()"></button>
@@ -26,7 +26,7 @@
             <ion-content class='padding'>
 
                 <div class="list">
-                    <textarea id="contactNotes">{{contact.notes}}</textarea>                
+                    <textarea id="contactNotes" ng-model="contactEdit.notes"></textarea>                
                 </div>
 
 

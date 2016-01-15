@@ -11,11 +11,6 @@ angular.module('linkspot')
         $scope.contactEdit = angular.copy(Contacts.get($stateParams.contactId));
         $scope.contactUpdate = Contacts.get($stateParams.contactId);
 
-        // $scope.contactEdit = angular.copy(Contacts.get($stateParams.contactId));
-        // contactBeforeUpdate = angular.copy($scope.contactEdit);
-
-
-        console.log($scope.contactBeforeUpdate);
         $scope.name = $scope.contactEdit.firstName + " " + $scope.contactEdit.lastName;
         $scope.title = $scope.name;
 
@@ -25,13 +20,9 @@ angular.module('linkspot')
         $scope.tags = Tags.all();
     });
 
-    // $scope.name = "Temp";
 
     $scope.$on( "$ionicView.enter", function() {
-        var contactNotes = document.getElementById("contactNotes");
-        if (contactNotes != null) {
-            contactNotes.focus;
-        }
+
     });
 
     $scope.$watch(
@@ -45,6 +36,10 @@ angular.module('linkspot')
                 $scope.title = $scope.name;           
         }
     );
+
+    $scope.goBackToDetail = function() {
+        $state.go('contacts-detail', { "contactId": $scope.contactEdit.id });
+    }
     
     // Modify Tags
     $scope.isSelected = function(tag) {
@@ -73,18 +68,15 @@ angular.module('linkspot')
         $scope.contactUpdate.phone        = $scope.contactEdit.phone;
         $scope.contactUpdate.email        = $scope.contactEdit.email;
         Contacts.update($scope.contactUpdate);
-        $state.go('contacts-detail', { "contactId": $scope.contactEdit.id });
-
+        $scope.goBackToDetail();
     }
 
     $scope.updateContactNotes = function() {
-        $scope.contactEdit.notes = document.getElementById('contactNotes').value;
-        Contacts.update($scope.contactEdit);
-        $state.go('contacts-detail', { "contactId": $scope.contactEdit.id });
-    }
-
-    $scope.goBackToDetail = function() {
-        $state.go('contacts-detail', { "contactId": $scope.contactEdit.id });
+        console.log($scope.contactEdit.notes);
+        console.log($scope.contactUpdate.notes);
+        $scope.contactUpdate.notes = $scope.contactEdit.notes;
+        Contacts.update($scope.contactUpdate);
+        $scope.goBackToDetail();    
     }
 
     $scope.removeContact = function() {

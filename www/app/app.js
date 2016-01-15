@@ -48,28 +48,28 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   })
   .state('contacts', {
     url: '/contacts',
-    templateUrl: 'app/components/contacts/tab-contacts.html',
+    templateUrl: 'app/components/contacts/views/tab-contacts.html',
     controller: 'ContactsCtrl'
   })
   .state('contacts-detail', {
     cache: false,
     url: '/contacts/:contactId',
-    templateUrl: 'app/components/contacts/contacts-detail.html',
+    templateUrl: 'app/components/contacts/views/contacts-detail.html',
     controller: 'ContactsDetailCtrl'
   })
   .state('contacts-detail-edit', {
     url: '/contacts/:contactId/edit',
-    templateUrl: 'app/components/contacts/contacts-detail-edit.html',
+    templateUrl: 'app/components/contacts/views/contacts-detail-edit.html',
     controller: 'ContactsDetailEditCtrl'
   })
   .state('contacts-detail-notes', {
     url: '/contacts/:contactId/notes',
-    templateUrl: 'app/components/contacts/contacts-detail-notes.html',
+    templateUrl: 'app/components/contacts/views/contacts-detail-notes.html',
     controller: 'ContactsDetailEditCtrl'
   })
   .state('contacts-share-email', {
     url: '/contacts/:contactId/share',
-    templateUrl: 'app/components/contacts/contacts-share-email.html',
+    templateUrl: 'app/components/contacts/views/contacts-share-email.html',
     controller: 'ContactsShareEmailCtrl'
   })
   .state('intro', {
