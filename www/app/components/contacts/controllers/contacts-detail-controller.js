@@ -32,4 +32,9 @@ angular.module('linkspot')
         $state.go('login');
     };
 
+    $scope.toggleRightSideMenu = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
+
 }]);
