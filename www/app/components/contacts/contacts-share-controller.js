@@ -10,19 +10,16 @@ angular.module('linkspot')
         $scope.contact = Contacts.get($stateParams.contactId);
         $scope.name = $scope.contact.firstName + " " + $scope.contact.lastName;
         $scope.title = "Share Contact";
-
-        $scope.recipName = "";
-        $scope.recipEmail = "Hi";
     });
+    $scope.recip = { name: "", email: ""};
 
     // Send Email - can only populate email for app to use.
-    $scope.sendEmail = function() {
-        var to = $scope.recipEmail;
+    $scope.sendEmail = function(to) {
         var from = $scope.user.email;
         console.log(from);
         console.log(to);
         var subject = "Hello - Testing from detail controller";
-        var msg = "test test";
+        var msg = Email.createEmail($scope.contact, "Hello");
         Email.send(to, from, subject, msg).success(function() {
             console.log("Sent Email!");
         });

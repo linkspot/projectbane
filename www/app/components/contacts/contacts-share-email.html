@@ -17,40 +17,40 @@
 	    </ion-side-menu>
 
 	    <ion-side-menu-content>
-        
-            <ion-content>
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="First Name" ng-model="recipName">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Email" ng-model="recipEmail">
-                    </label>
-                </div>
-
-                <div style="padding-left:16px;">
-                    <p> Hi {{recipName}},</p>
-                    <p> I'd like to introduce you to {{name}}. I think you two will get along well. </p>
-                    {{recipEmail}}
-                </div>
-
-                <div class="list card">
-                    <div class="item item-body">
-                        <img class="full-image" src="{{contact.card}}">
+            <form>
+                <ion-content>
+                    <div class="list">
+                        <label class="item item-input">
+                            <input type="text" placeholder="Name" ng-model="recip.name">
+                        </label>
+                        <label class="item item-input">
+                            <input type="text" placeholder="Email" ng-model="recip.email">
+                        </label>
                     </div>
-                    <div class="item item-avatar">
-                        <img src="assets/img/ionic.png">
-                        <h2>{{name}}</h2>
-                        <p>{{contact.title}} at {{contact.company}}</p>
-                        <p> Email: {{contact.email}}</p>
-                        <p> Phone: {{contact.phone}}</p>
+
+                    <div style="padding-left:16px;">
+                        <p ng-if="recip.name!=''"> Hi {{recip.name}},</p>
+                        <p> I'd like to introduce you to {{name}}. I think you two will get along well. </p>
                     </div>
-                </div>
-                
-            </ion-content>
-            <button class="button button-block button-positive bottom-button" ng-click="sendEmail()">
-                Send Email               
-            </button>
+
+                    <div class="list card">
+                        <div class="item item-body">
+                            <img class="full-image" src="{{contact.card}}">
+                        </div>
+                        <div class="item item-avatar">
+                            <img src="assets/img/ionic.png">
+                            <h2>{{name}}</h2>
+                            <p>{{contact.title}} at {{contact.company}}</p>
+                            <p> Email: {{contact.email}}</p>
+                            <p> Phone: {{contact.phone}}</p>
+                        </div>
+                    </div>
+                    
+                </ion-content>
+                <input type="submit" class="button button-block button-positive bottom-button" ng-click="sendEmail(recip.email)">
+                    Send Email               
+                </input>
+            </form>
 
         </ion-side-menu-content>
 	</ion-side-menus>

@@ -5,7 +5,7 @@ angular.module('linkspot')
     var keys = $firebaseArray(dataRef);
     var url = "https://api.mailgun.net/v3/sandbox9508412c6a9142efb3240ab88b6b23d1.mailgun.org/messages";
 
-    var get_auth_info = function() {
+    var getAuthInfo = function() {
     	var email_user = ""
     	var email_key = "";
 		dataRef.once("value", function(snapshot) {
@@ -22,12 +22,23 @@ angular.module('linkspot')
     };
 
 	return {
+		createEmail: function(contact, msg) {
+			var html = "<html><body>";
+
+			html += "<h1>" + contact.name + "</h1>";
+			html += "<h1>" + contact.title + " at " + contact.company + "</h1>";
+			html += "<h2> Email: " + contact.email + "</h2>";
+			html += "<h2> Phone: " + contact.phone + "</h2>";
+			html += "<img src=" + contact.card + "></img>";
+
+			return html + "</body></html>";
+		},
 		send: function(to, from, subject, msg) {
 			var data = {
 	            'to': to,
 	            'from': from,
 	            'subject': subject,
-	            'text': msg
+	            'html': msg
 	        };
 
 	        var req = {
@@ -43,7 +54,7 @@ angular.module('linkspot')
                 data: data
             };
 
-	        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(get_auth_info());
+	        $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(getAuthInfo());
 	        return $http(req);
 		}
 	};
