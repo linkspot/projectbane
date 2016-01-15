@@ -25,7 +25,7 @@ angular.module('linkspot')
 		createEmail: function(contact, msg) {
 			var html = "<html><body>";
 
-			html += "<h1>" + contact.name + "</h1>";
+			html += "<h1>" + contact.firstName + " " + contact.lastName + "</h1>";
 			html += "<h1>" + contact.title + " at " + contact.company + "</h1>";
 			html += "<h2> Email: " + contact.email + "</h2>";
 			html += "<h2> Phone: " + contact.phone + "</h2>";
