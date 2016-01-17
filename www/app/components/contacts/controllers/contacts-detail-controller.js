@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicPopup','$ionicSideMenuDelegate', '$cordovaCamera', '$timeout', 'Contacts', 'Camera', 'Email', 'Tags', 
-            function($scope, $state, $stateParams, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $cordovaCamera, $timeout, Contacts, Camera, Email, Tags) {
+.controller('ContactsDetailCtrl', ['$scope', '$state', '$stateParams', '$ionicHistory', '$ionicPopup','$ionicSideMenuDelegate', '$cordovaCamera', '$jrCrop', '$timeout', 'Contacts', 'Camera', 'Email', 'Tags', 
+            function($scope, $state, $stateParams, $ionicHistory, $ionicPopup, $ionicSideMenuDelegate, $cordovaCamera, $jrCrop, $timeout, Contacts, Camera, Email, Tags) {
     
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         $ionicSideMenuDelegate.toggleRight(false);
@@ -19,6 +19,20 @@ angular.module('linkspot')
     $scope.$on( "$ionicView.enter", function() {
 
     });
+
+    // Test
+    $scope.cropImage = function(url) {
+        $jrCrop.crop({
+            url: url,
+            width: 150,
+            height: 50
+        }).then(function(canvas) {
+            // success!
+            var image = canvas.toDataURL();
+        }, function() {
+            // User canceled or couldn't load image.
+        });
+    };
 
     $scope.shareContact = function() {
         $state.go('contacts-share-email', { "contactId": $stateParams.contactId });
