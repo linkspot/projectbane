@@ -1,0 +1,45 @@
+<ion-view view-title="Profile">
+
+    <ion-content>
+        <div class="item item-body">
+            <div ng-hide="user.card">
+                <button class="button button-full button-light" 
+                style="border: 1px dashed grey; border-radius:5px; height:135px;"
+                ng-click="showProfileActionSheet()">Click to Add Your Business Card</button>
+            </div>
+            <img ng-show="user.card" id="user.card" ng-src="{{user.card}}" alt="Your Business Card" ng-click="showProfileActionSheet()"></img>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-ios-person ion-positive placeholder-icon"></i>
+                <input type="text" ng-model="user.firstName" placeholder="First Name"></input>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-person-outline ion-positive placeholder-icon"></i>
+                <input type="text" ng-model="user.lastName" placeholder="Last Name"></input>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-telephone ion-android-call ion-positive placeholder-icon"></i>
+                <input type="phone" ng-model="user.phone" placeholder="xxx-xxx-xxxx" style="border: none; height: 34px;"></input>   
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-email ion-positive placeholder-icon"></i>
+                <input type="email" ng-model="user.email" placeholder="email@example.com"></input>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-briefcase placeholder-icon"></i>
+                <input type="text" ng-model="user.title" placeholder="Web Developer, Chef, Jedi..."></input>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-home placeholder-icon"></i>
+                <input type="text" ng-model="user.company" placeholder="Facebook, Uber, Hogwarts..."></input>
+            </label>
+        </div>
+
+    </ion-content>
+            
+    <a ng-click="shareContact()"><div class="button button-block button-positive bottom-button" >Share Contact</div></a>
+
+
+</ion-view>

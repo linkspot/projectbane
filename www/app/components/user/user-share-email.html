@@ -1,0 +1,38 @@
+<ion-view view-title="{{title}}">
+
+    <form>
+        <ion-content>
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" ng-model="recip.name">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Email" ng-model="recip.email">
+                </label>
+            </div>
+
+            <div style="padding-left:16px;">
+                <p ng-if="recip.name!=''"> Hi {{recip.name}},</p>
+                <p> I'd like to share my contact info with you. This looks like the beginning of a beautiful friendship. </p>
+            </div>
+
+            <div class="list card">
+                <div class="item item-body">
+                    <img class="full-image" src="{{contact.card}}">
+                </div>
+                <div class="item item-avatar">
+                    <img src="assets/img/ionic.png">
+                    <h2>{{user.name}}</h2>
+                    <p>{{user.title}} at {{user.company}}</p>
+                    <p> Email: {{user.email}}</p>
+                    <p> Phone: {{user.phone}}</p>
+                </div>
+            </div>
+            
+        </ion-content>
+        <input type="submit" value="Share {{user.name}}'s Contact" class="button button-block button-positive bottom-button" ng-click="sendEmail(recip.email)">
+            Send Email               
+        </input>
+    </form>
+
+</ion-view>

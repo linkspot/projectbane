@@ -43,8 +43,13 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase'])
   .state('profile', {
     // cache: false,
     url: '/profile',
-    templateUrl: 'app/components/user/tab-profile.html',
+    templateUrl: 'app/components/user/user-profile.html',
     controller: 'ProfileCtrl'
+  })
+  .state('user-share-email', {
+    url: '/profile/:userId/share',
+    templateUrl: 'app/components/user/user-share-email.html',
+    controller: 'UserShareEmailCtrl'
   })
   .state('contacts', {
     url: '/contacts',

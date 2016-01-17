@@ -1,12 +1,10 @@
 angular.module('linkspot')
 
-.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform', 'Users', 'Camera', '$ionicSideMenuDelegate',
-	function($scope, $state, $cordovaCamera, $ionicPlatform, Users, Camera, $ionicSideMenuDelegate) {
+.controller('ProfileCtrl', ['$scope', '$state', '$cordovaCamera', '$ionicPlatform', 'Users', 'Camera', '$ionicSideMenuDelegate', '$ionicHistory',
+	function($scope, $state, $cordovaCamera, $ionicPlatform, Users, Camera, $ionicSideMenuDelegate, $ionicHistory) {
 
-	// $scope.user = "";
 
 	$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-        // $scope.profilePhoto = Camera.getProfile();
         $scope.user = Users.get();
     });
 
@@ -48,7 +46,18 @@ angular.module('linkspot')
     };
 
     $scope.logout = function() {
+        $scope.updateProfile();
         $state.go('login');
+    };
+
+    $scope.shareContact = function() {
+        $scope.updateProfile();
+        $state.go('user-share-email', { "userId": $scope.user.id });
+    };
+
+    $scope.$ionicGoBack = function() {
+        console.log($scope.updateProfile());
+        $scope.updateProfile();
     };
 
 	
