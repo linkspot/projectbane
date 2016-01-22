@@ -55,10 +55,6 @@ angular.module('linkspot')
         $state.go('user-share-email', { "userId": $scope.user.id });
     };
 
-    $scope.$ionicGoBack = function() {
-        console.log($scope.updateProfile());
-        $scope.updateProfile();
-    };
 
 	
 }]);

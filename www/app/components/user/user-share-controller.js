@@ -7,7 +7,7 @@ angular.module('linkspot')
         $ionicSideMenuDelegate.toggleRight(false);
         $scope.user = Users.get();
 
-        // $scope.contact = Contacts.get($stateParams.contactId);
+        console.log($scope.user);
         $scope.name = $scope.user.firstName + " " + $scope.user.lastName;
         $scope.title = "Share Contact";
     });
