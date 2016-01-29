@@ -22,16 +22,12 @@ angular.module('linkspot')
 
     // Test
     $scope.cropImage = function(url) {
-        $jrCrop.crop({
-            url: url,
-            width: 150,
-            height: 50
-        }).then(function(canvas) {
-            // success!
-            var image = canvas.toDataURL();
-        }, function() {
-            // User canceled or couldn't load image.
-        });
+        var crop = Camera.cropImage(url);
+        crop.then(function(image) {
+            var testImage = document.getElementById("test-img");
+            testImage.src = image;
+        },
+        function() {});
     };
 
     $scope.shareContact = function() {

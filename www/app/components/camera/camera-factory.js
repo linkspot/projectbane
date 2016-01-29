@@ -1,6 +1,6 @@
 angular.module('linkspot')
 
-.factory('Camera', ['$cordovaCamera', '$ionicActionSheet', function($cordovaCamera, $ionicActionSheet) {
+.factory('Camera', ['$cordovaCamera', '$ionicActionSheet', '$jrCrop', '$q', function($cordovaCamera, $ionicActionSheet, $jrCrop, $q) {
 	return {
 		// Configuring options
 		showActionSheet: function(setPictureFunction) {
@@ -22,13 +22,13 @@ angular.module('linkspot')
 							quality: 50,
 							destinationType: Camera.DestinationType.DATA_URL,
 							sourceType: Camera.PictureSourceType.CAMERA,
-							allowEdit: true,
+							allowEdit: false,
 							encodingType: Camera.EncodingType.JPEG,
 							targetWidth: 350,
 							targetHeight: 200,
 							popoverOptions: CameraPopoverOptions,
 							saveToPhotoAlbum: false,
-							correctOrientation: true
+							correctOrientation: false
 						};
 						setPictureFunction.call(this, options);
 					} else if (index === 1) {
@@ -36,19 +36,35 @@ angular.module('linkspot')
 							quality : 50, 
 							destinationType : Camera.DestinationType.DATA_URL, 
 							sourceType : 0, 
-							allowEdit: true,
+							allowEdit: false,
 							encodingType: Camera.EncodingType.JPEG,
 							targetWidth: 350,
 							targetHeight: 200,
-							correctOrientation : true
+							correctOrientation : false
 						};
 						setPictureFunction.call(this, options);
 					}                                                                           
 					return true;
 				}
 			});
+		},
+    	cropImage: function(url) {
+    		var deferred = $q.defer();
+			$jrCrop.crop({
+				url: url,
+				width: 350,
+				height: 200
+			})
+			.then(function(canvas) {
+				// success!
+				var image = canvas.toDataURL();
+				console.log(image);
+				deferred.resolve(image);
+			}, function() {
+				// User cancelled or couldn't load image.
+				deferred.reject("No image");
+			});
+			return deferred.promise;
 		}
-	};
-
-
+	}
 }]);
