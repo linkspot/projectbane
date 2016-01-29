@@ -145,15 +145,18 @@
     font-size: 30px;
 }
 
-#contactNotes {
-    width: 100%;
-    min-height: 30vh;
-}
-
 .contactNotesDisplay {
     text-decoration: none;
 }
 
 .contactNotesDisplay p {
     text-overflow: ellipsis;
+}
+
+.popup-container .popup {
+    width: 90% !important;
+}
+
+.notes-popup {
+    padding: 5px !Important;
 }

@@ -44,11 +44,9 @@
                     Send mail
                 </button> -->
                
-                <div class="list contact-detail-notes">
+                <div class="list contact-detail-notes" ng-click="showPopup()">
                     <li class="item">
-                        <a class="contactNotesDisplay" ng-href="#/contacts/{{contact.id}}/notes">
-                            <p>{{contact.notes ? contact.notes : "Click to Add Notes"}}</p>
-                        </a>
+                        <p>{{contact.notes ? contact.notes : "Click to Add Notes"}}</p>
                     </li>
 
                 </div>
