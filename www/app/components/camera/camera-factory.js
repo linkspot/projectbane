@@ -28,7 +28,7 @@ angular.module('linkspot')
 							targetHeight: 200,
 							popoverOptions: CameraPopoverOptions,
 							saveToPhotoAlbum: false,
-							correctOrientation: false
+							correctOrientation: true
 						};
 						setPictureFunction.call(this, options);
 					} else if (index === 1) {
@@ -40,7 +40,7 @@ angular.module('linkspot')
 							encodingType: Camera.EncodingType.JPEG,
 							targetWidth: 350,
 							targetHeight: 200,
-							correctOrientation : false
+							correctOrientation : true
 						};
 						setPictureFunction.call(this, options);
 					}                                                                           
