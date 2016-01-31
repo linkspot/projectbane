@@ -89,8 +89,8 @@ angular.module('linkspot')
         confirmPopup.then(function(res) {
             if(res) {
                 console.log('Contact Deleted');
-                Contacts.remove($scope.contactEdit);
-                $state.go('tab.contacts');
+                Contacts.remove($scope.contactUpdate);
+                $state.go('contacts');
             } else {
                 console.log('Contact Not Deleted');
             }
