@@ -30,12 +30,11 @@ angular.module('linkspot')
 
             return companies;
         },
-        add: function(imageSrc) {
+        add: function(image) {
             // TODO: store largest number id instead. Right now, ids can be reused if contact is deleted
             var lastId = contacts.length - 1;
             var currId = 0;
             if (lastId >= 0) currId = contacts[lastId].id + 1;
-            var image = imageSrc;
             contacts.$add({
                 id: currId,
                 card: image,
