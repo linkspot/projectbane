@@ -1,22 +1,24 @@
-<ion-view view-title="Log In">
-      <ion-content>
+<ion-view hide-nav-bar="true" view-title="Log In">
+      <ion-content class="login-background">
+
+      <div class="login-logo-container"><img src="../../assets/img/logo.png">Get pointed in the right direction</div>
 
       <form name="signupForm" ng-submit="logIn(loginForm)">
-        <div class="list list-inset">
+        <div class="list list-inset login-form-container">
             <label class="item item-input">
                 <input type="email" placeholder="Email" id="loginUsername" ng-model="loginForm.email">
             </label>
             <label class="item item-input">
                 <input type="password" placeholder="Password" id="loginPassword" ng-model="loginForm.password">
             </label>
-            <button class="button button-outline button-block button-positive">
+            <button class="button button-outline button-block button-light">
                 Log In
             </button>
         </div>
 
       </form>
 
-      <div style="text-align:center"><a href="#/signup">Don't have an account? Sign up here.</a></div>
+      <div class="signup-container"><a href="#/signup">Don't have an account? <strong>Sign up.</strong></a></div>
 
 
       </ion-content>

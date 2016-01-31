@@ -67,21 +67,21 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase', 'jrCrop'])
     templateUrl: 'app/components/contacts/views/contacts-detail-edit.html',
     controller: 'ContactsDetailEditCtrl'
   })
-  .state('contacts-detail-notes', {
-    url: '/contacts/:contactId/notes',
-    templateUrl: 'app/components/contacts/views/contacts-detail-notes.html',
-    controller: 'ContactsDetailEditCtrl'
-  })
+  // .state('contacts-detail-notes', {
+  //   url: '/contacts/:contactId/notes',
+  //   templateUrl: 'app/components/contacts/views/contacts-detail-notes.html',
+  //   controller: 'ContactsDetailEditCtrl'
+  // })
   .state('contacts-share-email', {
     url: '/contacts/:contactId/share',
     templateUrl: 'app/components/contacts/views/contacts-share-email.html',
     controller: 'ContactsShareEmailCtrl'
   })
-  .state('intro', {
-    url: '/',
-    templateUrl: 'app/components/intro/intro.html',
-    controller: 'IntroCtrl'
-  })
+  // .state('intro', {
+  //   url: '/',
+  //   templateUrl: 'app/components/intro/intro.html',
+  //   controller: 'IntroCtrl'
+  // })
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/components/user/signup.html',
@@ -94,7 +94,7 @@ angular.module('linkspot', ['ionic', 'ngCordova', 'firebase', 'jrCrop'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/login');
 
 });
 
