@@ -125,7 +125,7 @@
 }
 
 .login-background.scroll-content {
-    background: url('/assets/img/bg-light.png') no-repeat;
+    background: url('../img/bg-light.png') no-repeat;
     background-size: cover;
 }
 
