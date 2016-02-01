@@ -1,7 +1,7 @@
 angular.module('linkspot')
 
-.controller('ContactsCtrl', ['$scope', '$state', '$cordovaCamera','$ionicSideMenuDelegate', '$ionicPopover', 'Camera', 'Contacts', 'Email', 'Tags', 'Users',
-            function($scope, $state, $cordovaCamera, $ionicSideMenuDelegate, $ionicPopover, Camera, Contacts, Email, Tags, Users) {
+.controller('ContactsCtrl', ['$scope', '$state', '$cordovaCamera','$ionicSideMenuDelegate', '$ionicPopover', '$jrCrop', 'Camera', 'Contacts', 'Email', 'Tags', 'Users',
+            function($scope, $state, $cordovaCamera, $ionicSideMenuDelegate, $ionicPopover, $jrCrop, Camera, Contacts, Email, Tags, Users) {
 // With the new view caching in Ionic, Controllers are only called
 // when they are recreated or on app start, instead of every page change.
 // To listen for when this page is active (for example, to refresh data),
@@ -52,24 +52,61 @@ angular.module('linkspot')
     }
 
     $scope.setContactPicture = function(options) {
+        // $cordovaCamera.getPicture(options)
+        // .then(function(imageData) {
+        //   if(imageData != null) {
+        //     var imageSrc = "data:image/jpeg;base64," + imageData;
+        //     var id = Contacts.add(imageSrc);
+        //     return id;
+        //   }
+        //   else {
+        //     return -1;
+        //   }
+        // }, function(err) {
+        //   alert(err);
+        // })
+        // .then(function(newID) {
+        //     if (newID >= 0) {
+        //       // $state.go('tab.contacts-detail', { "contactId": newID });
+        //       $state.go('contacts-detail-edit', { "contactId": newID });
+        //     }
+        // });
+        var isAndroid = ionic.Platform.isAndroid();
+        if(isAndroid)
+            options["allowEdit"] = true;
+
         $cordovaCamera.getPicture(options)
         .then(function(imageData) {
-          if(imageData != null) {
-            var imageSrc = "data:image/jpeg;base64," + imageData;
-            var id = Contacts.add(imageSrc);
-            return id;
-          }
-          else {
-            return -1;
-          }
-        }, function(err) {
-          alert(err);
-        })
-        .then(function(newID) {
-            if (newID >= 0) {
-              // $state.go('tab.contacts-detail', { "contactId": newID });
-              $state.go('contacts-detail-edit', { "contactId": newID });
+            var newID = -1;
+            if(imageData != null) {
+                var imageSrc = "data:image/jpeg;base64," + imageData;
+                if(isAndroid)
+                    newID = Contacts.add(imageSrc);
+                else
+                    newID = $scope.cropIOS(imageSrc);
             }
+            if (newID >= 0)
+                $state.go('contacts-detail-edit', { "contactId": newID });
+        }, function(err) {
+            alert(err);
+            return -1;
+        });
+    }
+
+    $scope.cropIOS = function(imageData) {
+        $jrCrop.crop({
+            url: imageData,
+            width: 350,
+            height: 200
+        }).then(function(canvas) {
+            // success!
+            var imageSrc = canvas.toDataURL()
+            var newID = Contacts.add(imageSrc);
+            var testImage = document.getElementById("test-img");
+            testImage.src = imageSrc;
+            return newID
+            // if (newID >= 0)
+            //     $state.go('contacts-detail-edit', { "contactId": newID });
         });
     }
 

@@ -19,7 +19,7 @@ angular.module('linkspot')
 					// console.log('CAMERA ACTIONSHEET BUTTON CLICKED', index);
 					if (index === 0) {
 						options = {
-							quality: 50,
+							quality: 100,
 							destinationType: Camera.DestinationType.DATA_URL,
 							sourceType: Camera.PictureSourceType.CAMERA,
 							allowEdit: false,
@@ -33,7 +33,7 @@ angular.module('linkspot')
 						setPictureFunction.call(this, options);
 					} else if (index === 1) {
 							options = {
-							quality : 50, 
+							quality : 100, 
 							destinationType : Camera.DestinationType.DATA_URL, 
 							sourceType : 0, 
 							allowEdit: false,
