@@ -1,17 +1,13 @@
 <ion-view view-title="{{title}}">
 
     <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-ios-pricetag" ng-click="toggleLeftSideMenu()"></button>
+        <button menu-toggle="left" class="button button-icon icon ion-ios-settings" ng-click="toggleLeftSideMenu()"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-person-add" ng-click="showContactActionSheet()"></button>
+        &nbsp;
         <button menu-toggle="right" class="button button-icon icon ion-navicon" ng-click="toggleRightSideMenu()"></button>
     </ion-nav-buttons>
-
-    <!--
-    <ion-nav-buttons side="right">
-        <button class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
-    -->
 
     <ion-side-menus enable-menu-with-back-views="true">
 
@@ -46,20 +42,15 @@
         </ion-side-menu>
 
         <ion-side-menu-content>
-            <div class="bar bar-subheader item-input-inset">
+<!--             <div class="bar bar-subheader item-input-inset">
                 <label class="item-input-wrapper textbox-search">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <!-- <input ng-show="checkField('company')" type="search" placeholder="Search by Company" ng-model="search.company"> -->
                     <input ng-show="checkField('fullName')" type="search" placeholder="Search by Name" ng-model="search.fullName">
-                    <!-- 
-                    <input ng-show="checkField('phone')" type="search" placeholder="Search by Phone" ng-model="search.phone">
-                    <input ng-show="checkField('email')" type="search" placeholder="Search by Email" ng-model="search.email"> 
-                    -->
                 </label>
-                <!-- <button class="button button-icon icon ion-android-search" ng-click="openPopover($event)"></button> -->
-            </div>
+            </div> -->
 
-            <ion-content class="has-subheader has-footer">
+            <!-- <ion-content class="has-subheader has-footer"> -->
+            <ion-content class="has-footer">
                 <ion-list>
                     <!-- With Dividers -->
                     <span ng-repeat="(company, companyContacts) in companies | orderBy:company">
@@ -75,9 +66,9 @@
 
             </ion-content>
 
-            <button class="button button-block button-positive bottom-button" ng-click="showContactActionSheet()">
+<!--             <button class="button button-block button-light bottom-button" >
                 Add Business Card                 
-            </button>
+            </button> -->
         </ion-side-menu-content>
 
     </ion-side-menus>

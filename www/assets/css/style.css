@@ -1,3 +1,7 @@
+.theme-color-bg {
+    background-color: #008b8a !important;
+}
+
 .center {
     position: relative;
     margin: 0;
@@ -5,18 +9,9 @@
 }
 
 .vert-center {
-    /*position: absolute;*/
     padding-top: 25%;
-    /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
 }
 
-/*.grad {
-    background: linear-gradient(#aaf6ad, #61da66);
-    height: 100%;
-}*/
-
-/* Contacts: Display */
 .contacts-column {
     width: 32%;
     display: inline-block;
@@ -39,31 +34,12 @@
 	margin-top: -2px;
 }
 
-/* Contacts: Search Bar*/
-/*
-.platform-android .bar-subheader{
-	top: 93px !important;
-}
-
-.platform-android .has-subheader {
-	top: 137px;
-}
-*/
-
-/* Contacts: Bottom Button */
 .bottom-button {
     position: fixed;
     bottom: -0.6em;
     border-radius: 0px;
 }
 
-/*
-.platform-android .bottom-button {
-    bottom: -0.6em;
-}
-*/
-
-/* Profile */
 .profilePhoto {
 	height: 100%;
 }
@@ -72,7 +48,6 @@
     height: 100%;
 }
 
-/* Side Menu: Left Checkmarks*/
 .item-icon-left .item-content {
     padding-left:3em;  
 }
@@ -81,18 +56,6 @@
     left:0;
     right: auto;
 }
-
-/*.contact-detail-container input {
-  padding-left: 35px;
-  padding-right: 45px;
-}
-
-.contact-detail-container a {
-    background: none;
-    border: none;
-    box-shadow: none;
-    font-size: 35px;
-}*/
 
 .intro-buttons-container {
     position: fixed; 
@@ -162,9 +125,8 @@
 }
 
 .login-background.scroll-content {
-    background: url('../img/bg-light.png') no-repeat;
+    background: url('/assets/img/bg-light.png') no-repeat;
     background-size: cover;
-    padding-top: 12vh;
 }
 
 .login-logo-container img {
@@ -173,7 +135,7 @@
 
 .login-logo-container {
     width: 100%;
-    padding: 40px 86px;
+    padding: 17vh 80px 40px 80px;
     color: white;
     text-align: center
 }
@@ -213,8 +175,6 @@
     margin-top: 11vh;
     text-align: center;
 }
-
-
 
 
 
