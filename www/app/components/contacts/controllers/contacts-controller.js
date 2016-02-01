@@ -71,28 +71,42 @@ angular.module('linkspot')
         //       $state.go('contacts-detail-edit', { "contactId": newID });
         //     }
         // });
+        var isAndroid = ionic.Platform.isAndroid();
+        if(isAndroid)
+            options["allowEdit"] = true;
 
         $cordovaCamera.getPicture(options)
         .then(function(imageData) {
             var newID = -1;
             if(imageData != null) {
-                $jrCrop.crop({
-                    url: "data:image/jpeg;base64," + imageData,
-                    width: 350,
-                    height: 200
-                }).then(function(canvas) {
-                    // success!
-                    var imageSrc = canvas.toDataURL()
+                var imageSrc = "data:image/jpeg;base64," + imageData;
+                if(isAndroid)
                     newID = Contacts.add(imageSrc);
-                    var testImage = document.getElementById("test-img");
-                    testImage.src = imageSrc;
-                    if (newID >= 0)
-                        $state.go('contacts-detail-edit', { "contactId": newID });
-                });
+                else
+                    newID = $scope.cropIOS(imageSrc);
             }
+            if (newID >= 0)
+                $state.go('contacts-detail-edit', { "contactId": newID });
         }, function(err) {
             alert(err);
             return -1;
+        });
+    }
+
+    $scope.cropIOS = function(imageData) {
+        $jrCrop.crop({
+            url: imageData,
+            width: 350,
+            height: 200
+        }).then(function(canvas) {
+            // success!
+            var imageSrc = canvas.toDataURL()
+            var newID = Contacts.add(imageSrc);
+            var testImage = document.getElementById("test-img");
+            testImage.src = imageSrc;
+            return newID
+            // if (newID >= 0)
+            //     $state.go('contacts-detail-edit', { "contactId": newID });
         });
     }
 
